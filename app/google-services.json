@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "689203791662",
+    "project_id": "eurocodefilms",
+    "storage_bucket": "eurocodefilms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689203791662:android:a0949c2be59bb57646dcbf",
+        "android_client_info": {
+          "package_name": "uem.dam.eurocodefilms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689203791662-rg1cf1pj3f2aoj831j2c9u48vq9ocfu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNEEFj0aj0PseyGmtisDWX1icuR1ZYjnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689203791662-rg1cf1pj3f2aoj831j2c9u48vq9ocfu9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
