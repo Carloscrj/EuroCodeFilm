@@ -1,14 +1,158 @@
 package uem.dam.eurocodefilms;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
+    EditText etEmail;
+    EditText etPwd;
+    Button btnAcceder;
+    Button btnBorrar;
+    Button btnRegistrar;
+    private FirebaseAuth fba;
+    private FirebaseUser user;
+
+    private static final String REGEX_PWD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?¿!#%$])[a-zA-Z\\d?¿!#%$]{8,16}$";
+    private static final String REGEX_EMAIL = "^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+)" +
+            "*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        etEmail = findViewById(R.id.etEmail);
+        etPwd = findViewById(R.id.etPassword);
+        btnAcceder = findViewById(R.id.btnAcceder);
+        btnRegistrar = findViewById(R.id.btnRegistrar);
+        btnBorrar = findViewById(R.id.btnBorrarCuenta);
+
+        btnAcceder.setOnClickListener(this);
+        btnRegistrar.setOnClickListener(this);
+        btnBorrar.setOnClickListener(this);
+
+        fba = FirebaseAuth.getInstance();
+
+        user = fba.getCurrentUser();
+        if (user == null) {
+            btnRegistrar.setEnabled(true);
+            btnBorrar.setVisibility(View.GONE);
+        } else {
+            btnAcceder.setEnabled(true);
+            btnRegistrar.setEnabled(false);
+            etEmail.setText(user.getEmail());
+            btnBorrar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnAcceder) acceder();
+        else if (v.getId() == R.id.btnRegistrar) registrar();
+        else if (v.getId() == R.id.btnBorrarCuenta) borrarCueta();
+    }
+
+    private void acceder() {
+        String email = etEmail.getText().toString().trim();
+        String pwd = etPwd.getText().toString().trim();
+
+        if (email.isEmpty() || pwd.isEmpty()) {
+            Toast.makeText(this, R.string.no_datos, Toast.LENGTH_LONG).show();
+        } else {
+            fba.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        user = fba.getCurrentUser();
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, R.string.pwd_no_ok, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private void registrar() {
+        String email = etEmail.getText().toString().trim();
+        String pwd = etPwd.getText().toString().trim();
+
+        if (email.isEmpty() || pwd.isEmpty()) {
+            Toast.makeText(this, R.string.no_datos, Toast.LENGTH_LONG).show();
+        } else {
+            boolean validEmail = isValidEmail(email);
+            if (validEmail) {
+                boolean validPwd = isValidPwd(pwd);
+                if (validPwd) {
+                    fba.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
+                                btnRegistrar.setEnabled(false);
+                                btnAcceder.setEnabled(true);
+                                btnBorrar.setVisibility(View.VISIBLE);
+                                etEmail.setText(email);
+                            } else {
+                                Toast.makeText(LoginActivity.this, R.string.registro_no_ok, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(this, R.string.pwd_no_valido, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(this, R.string.email_no_valido, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private boolean isValidPwd(String pwd) {
+        Pattern pattern = Pattern.compile(LoginActivity.REGEX_PWD);
+        Matcher matcher = pattern.matcher(pwd);
+        return matcher.matches();
+    }
+
+    private boolean isValidEmail(String email) {
+        Pattern pattern = Pattern.compile(LoginActivity.REGEX_EMAIL);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private void borrarCueta() {
+        fba.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, R.string.borrar_ok, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, R.string.borrar_no_ok, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        btnRegistrar.setEnabled(true);
+        btnAcceder.setEnabled(false);
+        btnBorrar.setVisibility(View.GONE);
+        etEmail.setText("");
     }
 }

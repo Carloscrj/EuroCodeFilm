@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">EurocodeFilms</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="btn_acceder">Acceder</string>
+    <string name="hintetEmail">Email</string>
+    <string name="hintetPassword">Contraseña</string>
+    <string name="btn_registrar">Registrar</string>
+    <string name="btn_borrar_cuenta">Borrar Cuenta</string>
+    <string name="borrar_ok">Cuenta borrada correctamente</string>
+    <string name="borrar_no_ok">Error al eliminar la cuenta</string>
+    <string name="no_datos">Falta email o contraseña</string>
+    <string name="registro_ok">El usuario ha sido registrado</string>
+    <string name="registro_no_ok">Error al registrar usuario</string>
+    <string name="email_no_valido">Formato de email introducido no válido</string>
+    <string name="pwd_no_valido">La contraseña no cumple con los requisitos</string>
+    <string name="pwd_no_ok">Contraseña incorrecta</string>
 </resources>
