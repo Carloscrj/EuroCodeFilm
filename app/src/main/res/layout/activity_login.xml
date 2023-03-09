@@ -7,6 +7,12 @@
     tools:context=".LoginActivity"
     android:padding="@dimen/margen_app">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/eurocode"
+        android:layout_above="@id/etEmail"
+        android:layout_marginBottom="@dimen/margen_app"/>
 
     <EditText
         android:id="@+id/etEmail"
