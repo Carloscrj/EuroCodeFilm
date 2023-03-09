@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/btn_acceder"
-            android:layout_marginEnd="@dimen/margen_app"/>
+            android:layout_marginEnd="@dimen/margen_btn"/>
 
         <Button
             android:id="@+id/btnRegistrar"
@@ -50,7 +50,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/btn_registrar"
-            android:layout_marginStart="@dimen/margen_app"/>
+            android:layout_marginStart="@dimen/margen_btn"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btnGoogle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/margen_btn"/>
+
     </LinearLayout>
 
     <Button

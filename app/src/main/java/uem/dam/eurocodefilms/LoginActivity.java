@@ -1,15 +1,25 @@
 package uem.dam.eurocodefilms;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,8 +36,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button btnAcceder;
     Button btnBorrar;
     Button btnRegistrar;
+    SignInButton btnGoogle;
     private FirebaseAuth fba;
     private FirebaseUser user;
+    private GoogleSignInClient mGoogleSignInClient;
+    private static final int RC_SIGN_IN = 123;
 
     private static final String REGEX_PWD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?¿!#%$])[a-zA-Z\\d?¿!#%$]{8,16}$";
     private static final String REGEX_EMAIL = "^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+)" +
@@ -44,12 +57,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnAcceder = findViewById(R.id.btnAcceder);
         btnRegistrar = findViewById(R.id.btnRegistrar);
         btnBorrar = findViewById(R.id.btnBorrarCuenta);
+        btnGoogle = findViewById(R.id.btnGoogle);
 
         btnAcceder.setOnClickListener(this);
         btnRegistrar.setOnClickListener(this);
         btnBorrar.setOnClickListener(this);
+        btnGoogle.setOnClickListener(this);
 
         fba = FirebaseAuth.getInstance();
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         user = fba.getCurrentUser();
         if (user == null) {
@@ -64,10 +85,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
+        } catch (ApiException e) {
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+        }
+    }
+
+
+    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnAcceder) acceder();
         else if (v.getId() == R.id.btnRegistrar) registrar();
-        else if (v.getId() == R.id.btnBorrarCuenta) borrarCueta();
+        else if (v.getId() == R.id.btnBorrarCuenta) borrarCuenta();
+        else if (v.getId() == R.id.btnGoogle) accederGoogle();
+    }
+
+    private void accederGoogle() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     private void acceder() {
@@ -139,7 +188,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return matcher.matches();
     }
 
-    private void borrarCueta() {
+    private void borrarCuenta() {
         fba.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
