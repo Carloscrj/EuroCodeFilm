@@ -20,4 +20,5 @@
     <string name="btn_cambiar_pwd">Cambiar contraseña</string>
     <string name="cambiar_pwd_ok">Contraseña actualizada</string>
     <string name="cambiar_pwd_no_ok">Error al cambiar la contraseña</string>
+    <string name="tv_valid_pwd">La contraseña debe contener al menos una mayúscula, una minúscula, un número y uno de los siguientes caracteres especiales: ?¿!#%$</string>
 </resources>

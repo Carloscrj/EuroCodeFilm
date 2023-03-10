@@ -3,4 +3,5 @@
     <dimen name="margen_app">16dp</dimen>
     <dimen name="margen_btn">8dp</dimen>
     <dimen name="margen_btn_cartelera">50dp</dimen>
+    <dimen name="tv_size">20sp</dimen>
 </resources>

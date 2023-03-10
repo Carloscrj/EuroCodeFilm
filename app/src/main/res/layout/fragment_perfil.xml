@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/et_nueva_pwd"
             android:layout_weight="1"
-            android:layout_marginEnd="@dimen/margen_app"/>
+            android:layout_marginEnd="@dimen/margen_app"
+            android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/btnCambiarPwd"

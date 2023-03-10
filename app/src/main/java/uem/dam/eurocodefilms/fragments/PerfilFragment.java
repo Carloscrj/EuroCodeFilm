@@ -31,7 +31,17 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth fba;
     private FirebaseUser user;
 
+
+
     public PerfilFragment() {}
+
+    public static PerfilFragment newInstance(String nombre) {
+        PerfilFragment fragment = new PerfilFragment();
+        Bundle args = new Bundle();
+        args.putString("nombre", nombre);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

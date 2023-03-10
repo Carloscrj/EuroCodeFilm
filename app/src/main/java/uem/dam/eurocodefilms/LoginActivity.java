@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -25,19 +26,31 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import uem.dam.eurocodefilms.bean.Perfil;
+import uem.dam.eurocodefilms.fragments.PerfilFragment;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText etEmail;
+    TextView tvUsuario;
     EditText etPwd;
     Button btnAcceder;
     Button btnRegistrar;
     SignInButton btnGoogle;
+    TextView tvValidPwd;
     private FirebaseAuth fba;
     private FirebaseUser user;
+    private DatabaseReference dbRef;
+    private ValueEventListener vel;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 123;
 
@@ -52,16 +65,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         etEmail = findViewById(R.id.etEmail);
+        tvUsuario = findViewById(R.id.tvUsuario);
         etPwd = findViewById(R.id.etPassword);
         btnAcceder = findViewById(R.id.btnAcceder);
         btnRegistrar = findViewById(R.id.btnRegistrar);
         btnGoogle = findViewById(R.id.btnGoogle);
+        tvValidPwd = findViewById(R.id.tvValidPwd);
 
         btnAcceder.setOnClickListener(this);
         btnRegistrar.setOnClickListener(this);
         btnGoogle.setOnClickListener(this);
 
         fba = FirebaseAuth.getInstance();
+        dbRef = FirebaseDatabase.getInstance().getReference("PERFILES");
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -72,11 +88,49 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         user = fba.getCurrentUser();
         if (user == null) {
             btnRegistrar.setEnabled(true);
+            btnAcceder.setEnabled(false);
+            tvValidPwd.setVisibility(View.VISIBLE);
         } else {
             btnAcceder.setEnabled(true);
             btnRegistrar.setEnabled(false);
+            tvValidPwd.setVisibility(View.INVISIBLE);
             etEmail.setText(user.getEmail());
+            dbRef = FirebaseDatabase.getInstance().getReference("PERFILES");
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        addValueEventListener();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (vel != null) {
+            dbRef.removeEventListener(vel);
+        }
+    }
+
+    private void addValueEventListener() {
+        vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Perfil p = ds.getValue(Perfil.class);
+                    if (p.getEmail().equals(user.getEmail())) {
+                        tvUsuario.setText("Nombre de usuario: " + p.getNombre());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("LECTURA FIREBASE", "Lectura cancelada: ", databaseError.toException());
+            }
+        };
+        dbRef.addValueEventListener(vel);
     }
 
     @Override
@@ -147,6 +201,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (validEmail) {
                 boolean validPwd = isValidPwd(pwd);
                 if (validPwd) {
+                    String[] partes = email.split("@");
+                    String nombre = partes[0];
                     fba.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -154,7 +210,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(LoginActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
                                 btnRegistrar.setEnabled(false);
                                 btnAcceder.setEnabled(true);
+                                tvValidPwd.setVisibility(View.INVISIBLE);
                                 etEmail.setText(email);
+                                Perfil perfil = new Perfil(nombre, email);
+                                dbRef.child(email.replace(".", "punto")).setValue(perfil);
+                                addDatabaseListener(email.replace(".", "punto"));
                             } else {
                                 Toast.makeText(LoginActivity.this, R.string.registro_no_ok, Toast.LENGTH_SHORT).show();
                             }
@@ -166,6 +226,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             } else {
                 Toast.makeText(this, R.string.email_no_valido, Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    private void addDatabaseListener(String email) {
+        if (vel == null) {
+            vel = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Perfil perfil = snapshot.getValue(Perfil.class);
+                    if (perfil != null) tvUsuario.setText("Nombre de usuario: " + perfil.getNombre());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    System.out.println("Error al leer los datos de la base de datos");
+                }
+            };
+            dbRef.child(email).addValueEventListener(vel);
         }
     }
 
