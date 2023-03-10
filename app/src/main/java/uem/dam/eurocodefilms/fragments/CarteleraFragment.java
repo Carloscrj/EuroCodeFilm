@@ -38,6 +38,8 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
     private DatabaseReference imagenesRef;
 
+    private ArrayList<String> imageList;
+
     public CarteleraFragment() {
     }
 
@@ -82,37 +84,38 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
                     break;
             }
 
-            imagenesRef = FirebaseDatabase.getInstance().getReference(cineSeleccionado);
+            imagenesRef = FirebaseDatabase.getInstance().getReference(cineSeleccionado).child("imagenes");
+
+            rvCartelera.setLayoutManager(new LinearLayoutManager(getActivity()));
+            imageList = new ArrayList<>();
+            imagenAdapter = new ImagenAdapter(imageList, getActivity());
+            rvCartelera.setAdapter(imagenAdapter);
+
+
 
             imagenesRef.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    List<Cine> images = new ArrayList<>();
-
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Cine image = snapshot.getValue(Cine.class);
-                        String url = image.getUrl();
-                        image.setUrl(url);
-                        images.add(image);
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String imageUrl = dataSnapshot.getValue(String.class);
+                        imageList.add(imageUrl);
                     }
-
-                    cargarRV(images);
-
+                    imagenAdapter.notifyDataSetChanged();
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Log.w("TAG", "Failed to read value.", databaseError.toException());
+                public void onCancelled(@NonNull DatabaseError error) {
+
                 }
             });
         }
     }
 
-    private void cargarRV(List<Cine> images) {
+    /*private void cargarRV(List<Cine> images) {
         imagenAdapter = new ImagenAdapter((ArrayList<Cine>) images, Glide.with(this));
         llm = new LinearLayoutManager(getActivity());
         rvCartelera.setHasFixedSize(true);
         rvCartelera.setLayoutManager(llm);
         rvCartelera.setAdapter(imagenAdapter);
-    }
+    }*/
 }

@@ -1,5 +1,6 @@
 package uem.dam.eurocodefilms.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -17,15 +18,18 @@ import uem.dam.eurocodefilms.data.Cine;
 
 public class ImagenAdapter extends RecyclerView.Adapter<ImagenAdapter.ImagenViewHolder> implements View.OnClickListener{
 
-    private ArrayList<Cine> datos;
+    private ArrayList<String> datos;
     private View.OnClickListener listener;
+
+    private Context context;
 
     public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
 
-    public ImagenAdapter(ArrayList<Cine> datos, RequestManager with) {
+    public ImagenAdapter(ArrayList<String> datos, Context context) {
         this.datos = datos;
+        this.context = context;
     }
 
     @Override
@@ -44,7 +48,9 @@ public class ImagenAdapter extends RecyclerView.Adapter<ImagenAdapter.ImagenView
 
     @Override
     public void onBindViewHolder(@NonNull ImagenAdapter.ImagenViewHolder holder, int position) {
-        holder.bindGraph(datos.get(position));
+        holder.imageView = holder.ivImagen;
+        Glide.with(context).load(datos.get(position)).into(holder.ivImagen);
+        //Glide.with(context).load(datos.get(position)).into((ImageView) holder.imageView);//holder.bindGraph(datos.get(position));
     }
 
     @Override
@@ -54,14 +60,15 @@ public class ImagenAdapter extends RecyclerView.Adapter<ImagenAdapter.ImagenView
 
     public class ImagenViewHolder extends RecyclerView.ViewHolder {
 
+        public Object imageView;
         ImageView ivImagen;
         public ImagenViewHolder(@NonNull View itemView) {
             super(itemView);
             ivImagen = itemView.findViewById(R.id.ivImagen);
         }
 
-        public void bindGraph(Cine cine) {
-
+        public void bindGraph(Object imagen) {
+            this.imageView = imagen;
         }
     }
 }
