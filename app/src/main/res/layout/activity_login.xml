@@ -84,7 +84,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/llBotones"
         android:layout_marginTop="@dimen/margen_app"
-        android:text="@string/tv_valid_pwd"/>
+        android:text="@string/tv_valid_pwd"
+        android:textSize="@dimen/tv_size"/>
 
 
 

@@ -115,12 +115,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void addValueEventListener() {
         vel = new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Perfil p = ds.getValue(Perfil.class);
-                    if (p.getEmail().equals(user.getEmail())) {
-                        tvUsuario.setText("Nombre de usuario: " + p.getNombre());
+                    if (user != null) {
+                        if (p.getEmail().equals(user.getEmail())) {
+                            tvUsuario.setText("Nombre de usuario: " + p.getNombre());
+                        }
+                    } else {
+                        tvUsuario.setText("Nombre de usuario: ");
                     }
                 }
             }
