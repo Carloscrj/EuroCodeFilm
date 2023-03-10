@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void cargarCartelera() {
+        ft = fm.beginTransaction();
+        //ft.replace(R.id.flContenedor, new InicioFragment());
+        ft.addToBackStack(null);
+        ft.commit();
 
     }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cines" >
+        <item>CALLE FUENCARRAL</item>
+        <item>LAS ROSAS</item>
+        <item>LA GAVIA</item>
+        <item>MANOTERAS</item>
+        <item>MENDEZ ALVARO</item>
+        <item>PRINCIPE PIO</item>
+    </string-array>
+</resources>
