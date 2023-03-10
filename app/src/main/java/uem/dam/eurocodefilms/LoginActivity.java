@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 123;
 
-    private static final String REGEX_PWD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?¿!#%$])[a-zA-Z\\d?¿!#%$]{8,16}$";
+    public static final String REGEX_PWD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?¿!#%$])[a-zA-Z\\d?¿!#%$]{8,16}$";
     private static final String REGEX_EMAIL = "^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+)" +
             "*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
 

@@ -14,4 +14,8 @@
     <string name="email_no_valido">Formato de email introducido no válido</string>
     <string name="pwd_no_valido">La contraseña no cumple con los requisitos</string>
     <string name="pwd_no_ok">Contraseña incorrecta</string>
+    <string name="et_nueva_pwd">Nueva contraseña</string>
+    <string name="btn_cambiar_pwd">Cambiar contraseña</string>
+    <string name="cambiar_pwd_ok">Contraseña actualizada</string>
+    <string name="cambiar_pwd_no_ok">Error al cambiar la contraseña</string>
 </resources>
