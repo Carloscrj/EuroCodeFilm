@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import uem.dam.eurocodefilms.fragments.InicioFragment;
+import uem.dam.eurocodefilms.fragments.PerfilFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,7 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void cargarPerfil() {
-
+        ft = fm.beginTransaction();
+        ft.replace(R.id.flContenedor, new PerfilFragment());
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
 }

@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText etEmail;
     EditText etPwd;
     Button btnAcceder;
-    Button btnBorrar;
     Button btnRegistrar;
     SignInButton btnGoogle;
     private FirebaseAuth fba;
@@ -56,12 +55,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etPwd = findViewById(R.id.etPassword);
         btnAcceder = findViewById(R.id.btnAcceder);
         btnRegistrar = findViewById(R.id.btnRegistrar);
-        btnBorrar = findViewById(R.id.btnBorrarCuenta);
         btnGoogle = findViewById(R.id.btnGoogle);
 
         btnAcceder.setOnClickListener(this);
         btnRegistrar.setOnClickListener(this);
-        btnBorrar.setOnClickListener(this);
         btnGoogle.setOnClickListener(this);
 
         fba = FirebaseAuth.getInstance();
@@ -75,12 +72,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         user = fba.getCurrentUser();
         if (user == null) {
             btnRegistrar.setEnabled(true);
-            btnBorrar.setVisibility(View.GONE);
         } else {
             btnAcceder.setEnabled(true);
             btnRegistrar.setEnabled(false);
             etEmail.setText(user.getEmail());
-            btnBorrar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -110,7 +105,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if (v.getId() == R.id.btnAcceder) acceder();
         else if (v.getId() == R.id.btnRegistrar) registrar();
-        else if (v.getId() == R.id.btnBorrarCuenta) borrarCuenta();
         else if (v.getId() == R.id.btnGoogle) accederGoogle();
     }
 
@@ -160,7 +154,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(LoginActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
                                 btnRegistrar.setEnabled(false);
                                 btnAcceder.setEnabled(true);
-                                btnBorrar.setVisibility(View.VISIBLE);
                                 etEmail.setText(email);
                             } else {
                                 Toast.makeText(LoginActivity.this, R.string.registro_no_ok, Toast.LENGTH_SHORT).show();
@@ -186,22 +179,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Pattern pattern = Pattern.compile(LoginActivity.REGEX_EMAIL);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
-    }
-
-    private void borrarCuenta() {
-        fba.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, R.string.borrar_ok, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(LoginActivity.this, R.string.borrar_no_ok, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        btnRegistrar.setEnabled(true);
-        btnAcceder.setEnabled(false);
-        btnBorrar.setVisibility(View.GONE);
-        etEmail.setText("");
     }
 }

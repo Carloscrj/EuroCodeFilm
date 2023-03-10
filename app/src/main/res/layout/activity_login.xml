@@ -67,12 +67,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnBorrarCuenta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/llBotones"
-        android:text="@string/btn_borrar_cuenta"/>
 
 
 </RelativeLayout>
