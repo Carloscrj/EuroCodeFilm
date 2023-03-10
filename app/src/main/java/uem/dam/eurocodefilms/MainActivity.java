@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import uem.dam.eurocodefilms.fragments.CarteleraFragment;
 import uem.dam.eurocodefilms.fragments.InicioFragment;
 import uem.dam.eurocodefilms.fragments.PerfilFragment;
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void cargarCartelera() {
         ft = fm.beginTransaction();
-        //ft.replace(R.id.flContenedor, new InicioFragment());
+        ft.replace(R.id.flContenedor, new CarteleraFragment());
         ft.addToBackStack(null);
         ft.commit();
 
