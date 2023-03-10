@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,6 +9,30 @@
         android:id="@+id/btnBorrarCuenta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_borrar_cuenta"/>
+        android:text="@string/btn_borrar_cuenta" />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/llCambioPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margen_app"
+        android:orientation="horizontal"
+        android:layout_below="@id/btnBorrarCuenta">
+
+        <EditText
+            android:id="@+id/etNuevaPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_nueva_pwd"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/margen_app"/>
+
+        <Button
+            android:id="@+id/btnCambiarPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cambiar_pwd"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</RelativeLayout>
