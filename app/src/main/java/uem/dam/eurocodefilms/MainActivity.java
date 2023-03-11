@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 
 import uem.dam.eurocodefilms.fragments.CarteleraFragment;
 import uem.dam.eurocodefilms.fragments.InicioFragment;
+import uem.dam.eurocodefilms.fragments.MapaFragment;
 import uem.dam.eurocodefilms.fragments.PerfilFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -57,7 +58,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void cargarMapa() {
-
+        ft = fm.beginTransaction();
+        ft.replace(R.id.flContenedor, new MapaFragment());
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     private void cargarPerfil() {
