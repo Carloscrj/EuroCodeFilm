@@ -35,8 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import uem.dam.eurocodefilms.bean.Perfil;
-import uem.dam.eurocodefilms.fragments.PerfilFragment;
+import uem.dam.eurocodefilms.data.Perfil;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 

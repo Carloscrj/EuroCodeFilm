@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 
 import uem.dam.eurocodefilms.LoginActivity;
 import uem.dam.eurocodefilms.R;
-import uem.dam.eurocodefilms.bean.Perfil;
+import uem.dam.eurocodefilms.data.Perfil;
 
 public class PerfilFragment extends Fragment implements View.OnClickListener {
 
@@ -70,7 +70,9 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 for (com.google.firebase.database.DataSnapshot data : dataSnapshot.getChildren()) {
                     Perfil perfil = data.getValue(Perfil.class);
                     if (user.getEmail().equals(perfil.getEmail())) {
-                        tvPerfil.setText(perfil.getNombre());
+                        String nombre = perfil.getNombre();
+                        String nombreCap = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
+                        tvPerfil.setText(nombreCap);
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package uem.dam.eurocodefilms.bean;
+package uem.dam.eurocodefilms.data;
 
 import java.io.Serializable;
 
