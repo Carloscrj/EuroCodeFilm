@@ -5,11 +5,22 @@
     android:layout_height="wrap_content"
     tools:context=".fragments.PerfilFragment">
 
+    <TextView
+        android:id="@+id/tvPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textSize="@dimen/tv_usuario_size"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
     <Button
         android:id="@+id/btnBorrarCuenta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_borrar_cuenta" />
+        android:text="@string/btn_borrar_cuenta"
+        android:layout_below="@id/tvPerfil"
+        android:layout_marginTop="@dimen/margen_app"/>
 
     <LinearLayout
         android:id="@+id/llCambioPwd"
