@@ -23,10 +23,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import uem.dam.eurocodefilms.R;
 import uem.dam.eurocodefilms.apidata.CineRes;
+import uem.dam.eurocodefilms.apidata.Graph;
 import uem.dam.eurocodefilms.util.APIRestServicesCines;
 import uem.dam.eurocodefilms.util.RetrofitClient;
 
@@ -74,6 +78,13 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
                 if (response.isSuccessful()) {
                     CineRes cines = response.body();
                     if (cines != null) {
+                        List<Graph> cinesaCines = new ArrayList<>();
+                        for (int i = 0; i < cines.getGraph().size(); i++) {
+                            if (cines.getGraph().get(i).getTitle().contains("Cinesa")) {
+                                cinesaCines.add(cines.getGraph().get(i));
+                            }
+                        }
+                        cines.setGraph(cinesaCines);
                         cargarDatosEnMapa(cines);
                     } else {
                         Log.e("CINES", "No hay datos");
