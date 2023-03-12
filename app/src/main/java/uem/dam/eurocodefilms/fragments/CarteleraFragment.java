@@ -33,6 +33,12 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
     ImagenAdapter imagenAdapter;
 
     private DatabaseReference imagenesRef;
+    private DatabaseReference cineRef;
+
+    String cineSeleccionado = "";
+
+
+
 
     private ArrayList<String> imageList;
 
@@ -56,7 +62,6 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnCartelera) {
-            String cineSeleccionado = "";
 
             switch (spnCartelera.getSelectedItemPosition()) {
                 case 0:
@@ -82,6 +87,7 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
             imagenesRef = FirebaseDatabase.getInstance().getReference(cineSeleccionado).child("imagenes");
 
+
             rvCartelera.setLayoutManager(new LinearLayoutManager(getActivity()));
             imageList = new ArrayList<>();
             imagenAdapter = new ImagenAdapter(imageList, getActivity());
@@ -104,7 +110,55 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
                 }
             });
+
         }
+
+        if (v.getId() == R.id.rvCartelera) {
+            switch (spnCartelera.getSelectedItemPosition()) {
+                case 0:
+                    cineSeleccionado = "CINE_CALLE_FUENCARRAL";
+
+                    break;
+                case 1:
+                    cineSeleccionado = "CINE_LAS_ROSAS";
+                    break;
+                case 2:
+                    cineSeleccionado = "CINE_LA_GAVIA";
+                    break;
+                case 3:
+                    cineSeleccionado = "CINE_MANOTERAS";
+                    break;
+                case 4:
+                    cineSeleccionado = "CINE_MENDEZ_ALVARO";
+                    break;
+                case 5:
+                    cineSeleccionado = "CINE_PRINCIPE_PIO";
+                    break;
+            }
+
+            cineRef = FirebaseDatabase.getInstance().getReference(cineSeleccionado);
+            String pelicula = "";
+            String sinopsis = "";
+
+
+            int pos = rvCartelera.getChildAdapterPosition(v);
+
+            if (pos == 0){
+               pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula1"));
+               sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis1"));
+            }else if (pos == 1){
+                pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula2"));
+                sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis2"));
+            }else if (pos == 2){
+                pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula3"));
+                sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis3"));
+            }else if (pos == 3){
+                pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula4"));
+                sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis4"));
+            }
+        }
+
+
     }
 
     /*private void cargarRV(List<Cine> images) {
