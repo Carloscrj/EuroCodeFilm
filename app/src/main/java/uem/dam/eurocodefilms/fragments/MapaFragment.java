@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,9 +38,6 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private MapView mMapView;
-
-    Spinner spnMapas;
-
     Retrofit r = RetrofitClient.getClient(APIRestServicesCines.BASE_URL);
     APIRestServicesCines ars = r.create(APIRestServicesCines.class);
 
@@ -55,7 +51,6 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
         mMapView = rootView.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
-        spnMapas = rootView.findViewById(R.id.spnMapas);
         return rootView;
     }
 

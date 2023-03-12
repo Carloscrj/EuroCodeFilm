@@ -8,14 +8,4 @@
         <item>MENDEZ ALVARO</item>
         <item>PRINCIPE PIO</item>
     </string-array>
-
-    <string-array name="mapas" >
-        <item>TODOS</item>
-        <item>CALLE FUENCARRAL</item>
-        <item>LAS ROSAS</item>
-        <item>LA GAVIA</item>
-        <item>MANOTERAS</item>
-        <item>MENDEZ ALVARO</item>
-        <item>PRINCIPE PIO</item>
-    </string-array>
 </resources>

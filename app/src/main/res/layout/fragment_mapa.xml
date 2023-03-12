@@ -5,28 +5,4 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MapaFragment">
-
-    <LinearLayout
-        android:id="@+id/llMapas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvMapas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tvcartelera"
-            android:layout_weight="2"/>
-
-        <Spinner
-            android:id="@+id/spnMapas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/mapas" />
-
-    </LinearLayout>
-
-</com.google.android.gms.maps.MapView>
+    tools:context=".fragments.MapaFragment" />
