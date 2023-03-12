@@ -9,7 +9,7 @@ public interface APIRestServicesCines {
 
     public static final String BASE_URL = "https://datos.madrid.es/egob/catalogo/";
 
-    public static final String CLAVE_KEY = "/208862-7650164-ocio_salas.json";
+    public static final String CLAVE_KEY = "208862-7650164-ocio_salas.json";
 
     @GET("{key}")
     Call<CineRes> obtenerCines(

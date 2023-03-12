@@ -1,9 +1,5 @@
 package uem.dam.eurocodefilms.fragments;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -14,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -24,13 +23,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import uem.dam.eurocodefilms.R;
 import uem.dam.eurocodefilms.apidata.CineRes;
-import uem.dam.eurocodefilms.apidata.Graph;
 import uem.dam.eurocodefilms.util.APIRestServicesCines;
 import uem.dam.eurocodefilms.util.RetrofitClient;
 
@@ -79,9 +75,11 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
                     CineRes cines = response.body();
                     if (cines != null) {
                         cargarDatosEnMapa(cines);
+                    } else {
+                        Log.e("CINES", "No hay datos");
                     }
                 } else {
-                    Log.e("CINES", "Error en la respuesta");
+                    Log.e("CINES", "Error en la respuesta del servidor " + response.code() + " - " + response.message());
                 }
             }
 
@@ -136,6 +134,8 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
+        LatLng latLng = new LatLng(40.416775, -3.703790);
+        mMap.moveCamera(com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom(latLng, 10));
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
