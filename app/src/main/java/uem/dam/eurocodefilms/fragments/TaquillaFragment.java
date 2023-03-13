@@ -21,6 +21,8 @@ public class TaquillaFragment extends Fragment {
     TextView tvRepreTitulo;
     TextView tvRepreSinopsis;
 
+    TextView tvRepreSala;
+
 
     public TaquillaFragment() {
         // Required empty public constructor
@@ -54,9 +56,11 @@ public class TaquillaFragment extends Fragment {
 
         tvRepreTitulo = vista.findViewById(R.id.tvRepreTitulo);
         tvRepreSinopsis = vista.findViewById(R.id.tvRepreSinopsis);
+        tvRepreSala = vista.findViewById(R.id.tvRepreSala);
 
         tvRepreTitulo.setText(pelicula);
         tvRepreSinopsis.setText(sinopsis);
+        tvRepreSala.setText(sala);
 
         return vista;
     }
