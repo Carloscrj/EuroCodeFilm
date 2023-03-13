@@ -52,14 +52,17 @@ public class TaquillaFragment extends Fragment{
 
     Button btnEntradas;
 
-
     ImageView ivTaquilla;
 
     LinearLayout llAsiento1;
     LinearLayout llAsiento2;
     LinearLayout llAsiento3;
-
-
+    LinearLayout llAsiento4;
+    LinearLayout llAsiento5;
+    LinearLayout llAsiento6;
+    LinearLayout llAsiento7;
+    LinearLayout llAsiento8;
+    LinearLayout llAsiento9;
 
 
 
@@ -109,34 +112,23 @@ public class TaquillaFragment extends Fragment{
         tvAgradecimiento = vista.findViewById(R.id.tvAgradecimiento);
         btnEntradas = vista.findViewById(R.id.btnEntradas);
         ivTaquilla = vista.findViewById(R.id.ivTaquilla);
+
         llAsiento1 = vista.findViewById(R.id.llAsiento1);
         llAsiento2 = vista.findViewById(R.id.llAsiento2);
         llAsiento3 = vista.findViewById(R.id.llAsiento3);
+        llAsiento4 = vista.findViewById(R.id.llAsiento4);
+        llAsiento5 = vista.findViewById(R.id.llAsiento5);
+        llAsiento6 = vista.findViewById(R.id.llAsiento6);
+        llAsiento7 = vista.findViewById(R.id.llAsiento7);
+        llAsiento8 = vista.findViewById(R.id.llAsiento8);
+        llAsiento9 = vista.findViewById(R.id.llAsiento9);
 
-        llAsiento1.setVisibility(View.GONE);
-        llAsiento2.setVisibility(View.GONE);
-        llAsiento3.setVisibility(View.GONE);
         ivTaquilla.setVisibility(View.GONE);
         tvAgradecimiento.setVisibility(View.GONE);
 
         tvRepreTitulo.setText(pelicula);
         tvRepreSinopsis.setText(sinopsis);
         tvRepreSala.setText(sala);
-
-        spnEntradas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int numEntradas = Integer.parseInt(spnEntradas.getSelectedItem().toString());
-                tvReprePrecio.setText(String.valueOf(numEntradas * 8.60));
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
 
 
         btnEntradas.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +148,6 @@ public class TaquillaFragment extends Fragment{
                 tvRepreSinopsis.setVisibility(View.GONE);
                 tvRepreSala.setVisibility(View.GONE);
                 btnEntradas.setVisibility(View.GONE);
-
                 ivTaquilla.setVisibility(View.VISIBLE);
                 tvAgradecimiento.setVisibility(View.VISIBLE);
             }
@@ -164,6 +155,4 @@ public class TaquillaFragment extends Fragment{
 
         return vista;
     }
-
-
 }
