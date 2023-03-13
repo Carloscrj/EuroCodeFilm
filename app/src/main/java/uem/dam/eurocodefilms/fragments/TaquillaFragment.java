@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,6 +47,8 @@ public class TaquillaFragment extends Fragment{
 
     TextView tvAgradecimiento;
 
+    TextView tvButacas;
+
     Button btnEntradas;
 
     RadioButton butaca1;
@@ -59,6 +63,10 @@ public class TaquillaFragment extends Fragment{
     RadioButton butaca10;
     RadioButton butaca11;
     RadioButton butaca12;
+
+    ImageView ivTaquilla;
+
+    LinearLayout llButacas;
 
 
 
@@ -97,6 +105,7 @@ public class TaquillaFragment extends Fragment{
         tvTituloPelicula = vista.findViewById(R.id.tvTituloPelicula);
         tvSinopsisPelicula = vista.findViewById(R.id.tvSinopsisPelicula);
         tvSalaPelicula = vista.findViewById(R.id.tvSalaPelicula);
+        tvButacas = vista.findViewById(R.id.tvButacas);
         tvNumEntradas = vista.findViewById(R.id.tvNumEntradas);
         tvPrecio = vista.findViewById(R.id.tvPrecio);
         spnEntradas = vista.findViewById(R.id.spnEntradas);
@@ -106,6 +115,7 @@ public class TaquillaFragment extends Fragment{
         tvRepreSala = vista.findViewById(R.id.tvRepreSala);
         tvAgradecimiento = vista.findViewById(R.id.tvAgradecimiento);
         btnEntradas = vista.findViewById(R.id.btnEntradas);
+        ivTaquilla = vista.findViewById(R.id.ivTaquilla);
         butaca1 = vista.findViewById(R.id.butaca1);
         butaca2 = vista.findViewById(R.id.butaca2);
         butaca3 = vista.findViewById(R.id.butaca3);
@@ -119,7 +129,7 @@ public class TaquillaFragment extends Fragment{
         butaca11 = vista.findViewById(R.id.butaca11);
         butaca12 = vista.findViewById(R.id.butaca12);
 
-
+        ivTaquilla.setVisibility(View.GONE);
         tvAgradecimiento.setVisibility(View.GONE);
 
         tvRepreTitulo.setText(pelicula);
@@ -139,6 +149,7 @@ public class TaquillaFragment extends Fragment{
                 tvTituloPelicula.setVisibility(View.GONE);
                 tvSinopsisPelicula.setVisibility(View.GONE);
                 tvSalaPelicula.setVisibility(View.GONE);
+                tvButacas.setVisibility(View.GONE);
                 tvNumEntradas.setVisibility(View.GONE);
                 tvPrecio.setVisibility(View.GONE);
                 spnEntradas.setVisibility(View.GONE);
@@ -146,6 +157,20 @@ public class TaquillaFragment extends Fragment{
                 tvRepreTitulo.setVisibility(View.GONE);
                 tvRepreSinopsis.setVisibility(View.GONE);
                 tvRepreSala.setVisibility(View.GONE);
+                btnEntradas.setVisibility(View.GONE);
+                butaca1.setVisibility(View.GONE);
+                butaca2.setVisibility(View.GONE);
+                butaca3.setVisibility(View.GONE);
+                butaca4.setVisibility(View.GONE);
+                butaca5.setVisibility(View.GONE);
+                butaca6.setVisibility(View.GONE);
+                butaca7.setVisibility(View.GONE);
+                butaca8.setVisibility(View.GONE);
+                butaca9.setVisibility(View.GONE);
+                butaca10.setVisibility(View.GONE);
+                butaca11.setVisibility(View.GONE);
+                butaca12.setVisibility(View.GONE);
+                ivTaquilla.setVisibility(View.VISIBLE);
                 tvAgradecimiento.setVisibility(View.VISIBLE);
             }
         });
