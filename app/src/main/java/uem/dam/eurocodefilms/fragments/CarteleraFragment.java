@@ -1,8 +1,11 @@
 package uem.dam.eurocodefilms.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,12 +29,20 @@ import uem.dam.eurocodefilms.adapter.ImagenAdapter;
 
 public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
+    public static final String CLAVE_PELICULA = "PELICULA";
+    public static final String CLAVE_SINOPSIS = "SINOPSIS";
     Spinner spnCartelera;
     Button btnCartelera;
+
+    TextView tvCartCines;
     RecyclerView rvCartelera;
     RecyclerView.LayoutManager llm;
 
     ImagenAdapter imagenAdapter;
+
+
+    FragmentManager fm;
+    FragmentTransaction ft;
 
     private DatabaseReference imagenesRef;
     private DatabaseReference cineRef;
@@ -46,15 +58,27 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        imagenAdapter = new ImagenAdapter(imageList, getActivity());
+        imagenAdapter.setOnClickListener(this);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.fragment_cartelera, container, false);
 
         spnCartelera = vista.findViewById(R.id.spnCartelera);
         btnCartelera = vista.findViewById(R.id.btnCartelera);
+        tvCartCines = vista.findViewById(R.id.tvCartCines);
         rvCartelera = vista.findViewById(R.id.rvCartelera);
 
+
+
         btnCartelera.setOnClickListener(this);
+
 
         return vista;
     }
@@ -62,6 +86,7 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnCartelera) {
+            tvCartCines.setText(spnCartelera.getSelectedItem().toString());
 
             switch (spnCartelera.getSelectedItemPosition()) {
                 case 0:
@@ -113,27 +138,19 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
         }
 
-        if (v.getId() == R.id.rvCartelera) {
-            switch (spnCartelera.getSelectedItemPosition()) {
-                case 0:
-                    cineSeleccionado = "CINE_CALLE_FUENCARRAL";
 
-                    break;
-                case 1:
-                    cineSeleccionado = "CINE_LAS_ROSAS";
-                    break;
-                case 2:
-                    cineSeleccionado = "CINE_LA_GAVIA";
-                    break;
-                case 3:
-                    cineSeleccionado = "CINE_MANOTERAS";
-                    break;
-                case 4:
-                    cineSeleccionado = "CINE_MENDEZ_ALVARO";
-                    break;
-                case 5:
-                    cineSeleccionado = "CINE_PRINCIPE_PIO";
-                    break;
+            if (tvCartCines.getText().toString().equals("CALLE FUENCARRAL")){
+                cineSeleccionado = "CINE_CALLE_FUENCARRAL";
+            } else if (tvCartCines.getText().toString().equals("LAS ROSAS")){
+                cineSeleccionado = "CINE_LAS_ROSAS";
+            } else if (tvCartCines.getText().toString().equals("LA GAVIA")){
+                cineSeleccionado = "CINE_LA_GAVIA";
+            } else if (tvCartCines.getText().toString().equals("MANOTERAS")){
+                cineSeleccionado = "CINE_MANOTERAS";
+            } else if (tvCartCines.getText().toString().equals("MENDEZ ALVARO")){
+                cineSeleccionado = "CINE_MENDEZ_ALVARO";
+            } else if (tvCartCines.getText().toString().equals("PRINCIPE PIO")){
+                cineSeleccionado = "CINE_PRINCIPE_PIO";
             }
 
             cineRef = FirebaseDatabase.getInstance().getReference(cineSeleccionado);
@@ -144,8 +161,8 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
             int pos = rvCartelera.getChildAdapterPosition(v);
 
             if (pos == 0){
-               pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula1"));
-               sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis1"));
+                pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula1"));
+                sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis1"));
             }else if (pos == 1){
                 pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula2"));
                 sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis2"));
@@ -156,7 +173,13 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
                 pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula4"));
                 sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis4"));
             }
-        }
+
+            fm = getFragmentManager();
+            ft = fm.beginTransaction();
+            ft.replace(R.id.flContenedor, TaquillaFragment.newInstance(pelicula, sinopsis));
+            ft.addToBackStack(null);
+            ft.commit();
+
 
 
     }

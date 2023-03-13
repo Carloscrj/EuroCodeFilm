@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.TaquillaFragment">
+
+
+
+
+    <TextView
+        android:id="@+id/tvtaquilla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/tituloTaquilla"
+        android:textSize="@dimen/titulo" />
+
+    <LinearLayout
+        android:id="@+id/llDetalle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvtaquilla"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTituloPelicula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="@string/titulo_pelicula"/>
+
+        <TextView
+            android:id="@+id/tvRepreTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDetalle2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llDetalle1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvSinopsisPelicula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:text="@string/sinopsis_pelicula"/>
+
+        <TextView
+            android:id="@+id/tvRepreSinopsis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
