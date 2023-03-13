@@ -34,7 +34,9 @@ public class ImagenAdapter extends RecyclerView.Adapter<ImagenAdapter.ImagenView
 
     @Override
     public void onClick(View v) {
-
+        if (listener != null) {
+            listener.onClick(v);
+        }
     }
 
     @NonNull

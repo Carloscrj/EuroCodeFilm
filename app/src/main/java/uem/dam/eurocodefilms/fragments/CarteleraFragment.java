@@ -1,6 +1,5 @@
 package uem.dam.eurocodefilms.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -9,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,10 +36,7 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
     TextView tvCartCines;
     RecyclerView rvCartelera;
-    RecyclerView.LayoutManager llm;
-
     ImagenAdapter imagenAdapter;
-
 
     FragmentManager fm;
     FragmentTransaction ft;
@@ -48,9 +45,6 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
     private DatabaseReference cineRef;
 
     String cineSeleccionado = "";
-
-
-
 
     private ArrayList<String> imageList;
 
@@ -61,8 +55,6 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        imagenAdapter = new ImagenAdapter(imageList, getActivity());
-        imagenAdapter.setOnClickListener(this);
     }
 
     @Override
@@ -74,12 +66,12 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
         btnCartelera = vista.findViewById(R.id.btnCartelera);
         tvCartCines = vista.findViewById(R.id.tvCartCines);
         rvCartelera = vista.findViewById(R.id.rvCartelera);
-
-
-
         btnCartelera.setOnClickListener(this);
-
-
+        rvCartelera.setLayoutManager(new LinearLayoutManager(getActivity()));
+        imageList = new ArrayList<>();
+        imagenAdapter = new ImagenAdapter(imageList, getActivity());
+        imagenAdapter.setOnClickListener(this);
+        rvCartelera.setAdapter(imagenAdapter);
         return vista;
     }
 
@@ -91,7 +83,6 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
             switch (spnCartelera.getSelectedItemPosition()) {
                 case 0:
                     cineSeleccionado = "CINE_CALLE_FUENCARRAL";
-
                     break;
                 case 1:
                     cineSeleccionado = "CINE_LAS_ROSAS";
@@ -113,12 +104,6 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
             imagenesRef = FirebaseDatabase.getInstance().getReference(cineSeleccionado).child("imagenes");
 
 
-            rvCartelera.setLayoutManager(new LinearLayoutManager(getActivity()));
-            imageList = new ArrayList<>();
-            imagenAdapter = new ImagenAdapter(imageList, getActivity());
-            rvCartelera.setAdapter(imagenAdapter);
-
-
 
             imagenesRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -136,9 +121,8 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
                 }
             });
 
-        }
-
-
+        } else {
+            Log.d("TAG", "onClick: " + v.getId());
             if (tvCartCines.getText().toString().equals("CALLE FUENCARRAL")){
                 cineSeleccionado = "CINE_CALLE_FUENCARRAL";
             } else if (tvCartCines.getText().toString().equals("LAS ROSAS")){
@@ -159,7 +143,6 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
 
             int pos = rvCartelera.getChildAdapterPosition(v);
-
             if (pos == 0){
                 pelicula = String.valueOf(cineRef.child("peliculas").child("pelicula1"));
                 sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis1"));
@@ -174,21 +157,11 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
                 sinopsis = String.valueOf(cineRef.child("sinopsis").child("sinopsis4"));
             }
 
-            fm = getFragmentManager();
+            fm = getActivity().getSupportFragmentManager();
             ft = fm.beginTransaction();
             ft.replace(R.id.flContenedor, TaquillaFragment.newInstance(pelicula, sinopsis));
             ft.addToBackStack(null);
             ft.commit();
-
-
-
+        }
     }
-
-    /*private void cargarRV(List<Cine> images) {
-        imagenAdapter = new ImagenAdapter((ArrayList<Cine>) images, Glide.with(this));
-        llm = new LinearLayoutManager(getActivity());
-        rvCartelera.setHasFixedSize(true);
-        rvCartelera.setLayoutManager(llm);
-        rvCartelera.setAdapter(imagenAdapter);
-    }*/
 }
