@@ -8,9 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Arrays;
 
 import uem.dam.eurocodefilms.R;
 
@@ -43,6 +46,19 @@ public class TaquillaFragment extends Fragment{
     TextView tvAgradecimiento;
 
     Button btnEntradas;
+
+    RadioButton butaca1;
+    RadioButton butaca2;
+    RadioButton butaca3;
+    RadioButton butaca4;
+    RadioButton butaca5;
+    RadioButton butaca6;
+    RadioButton butaca7;
+    RadioButton butaca8;
+    RadioButton butaca9;
+    RadioButton butaca10;
+    RadioButton butaca11;
+    RadioButton butaca12;
 
 
 
@@ -90,6 +106,19 @@ public class TaquillaFragment extends Fragment{
         tvRepreSala = vista.findViewById(R.id.tvRepreSala);
         tvAgradecimiento = vista.findViewById(R.id.tvAgradecimiento);
         btnEntradas = vista.findViewById(R.id.btnEntradas);
+        butaca1 = vista.findViewById(R.id.butaca1);
+        butaca2 = vista.findViewById(R.id.butaca2);
+        butaca3 = vista.findViewById(R.id.butaca3);
+        butaca4 = vista.findViewById(R.id.butaca4);
+        butaca5 = vista.findViewById(R.id.butaca5);
+        butaca6 = vista.findViewById(R.id.butaca6);
+        butaca7 = vista.findViewById(R.id.butaca7);
+        butaca8 = vista.findViewById(R.id.butaca8);
+        butaca9 = vista.findViewById(R.id.butaca9);
+        butaca10 = vista.findViewById(R.id.butaca10);
+        butaca11 = vista.findViewById(R.id.butaca11);
+        butaca12 = vista.findViewById(R.id.butaca12);
+
 
         tvAgradecimiento.setVisibility(View.GONE);
 
@@ -99,6 +128,8 @@ public class TaquillaFragment extends Fragment{
 
         int numEntradas = Integer.parseInt(spnEntradas.getSelectedItem().toString());
         tvReprePrecio.setText(String.valueOf(numEntradas * 8.60));
+
+        habilitarRadioButtons(numEntradas);
 
         btnEntradas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,11 +147,22 @@ public class TaquillaFragment extends Fragment{
                 tvRepreSinopsis.setVisibility(View.GONE);
                 tvRepreSala.setVisibility(View.GONE);
                 tvAgradecimiento.setVisibility(View.VISIBLE);
-
-
             }
         });
 
         return vista;
+    }
+
+    private void habilitarRadioButtons(int numEntradas) {
+        int contador = 0;
+        for (RadioButton radioButton : Arrays.asList(butaca1, butaca2, butaca3, butaca4, butaca5, butaca6, butaca7, butaca8, butaca9, butaca10, butaca11, butaca12)) {
+            if (contador < numEntradas) {
+                radioButton.setEnabled(true);
+            } else {
+                radioButton.setChecked(false);
+                radioButton.setEnabled(false);
+            }
+            contador++;
+        }
     }
 }
