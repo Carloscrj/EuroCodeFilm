@@ -92,6 +92,44 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/llDetalle4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llDetalle3"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margen_app">
+
+        <TextView
+            android:id="@+id/tvNumEntradas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tv_entradas"/>
+
+        <Spinner
+            android:id="@+id/spnEntradas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/numeroEntradas"/>
+
+        <TextView
+            android:id="@+id/tvPrecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tv_precio"/>
+
+        <TextView
+            android:id="@+id/tvReprePrecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>

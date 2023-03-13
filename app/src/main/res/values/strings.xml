@@ -28,4 +28,6 @@
     <string name="titulo_pelicula">TITULO:</string>
     <string name="sinopsis_pelicula">SINOPSIS:</string>
     <string name="sala_pelicula">SALA:</string>
+    <string name="tv_entradas">Nº Entradas:</string>
+    <string name="tv_precio">Precio:</string>
 </resources>
