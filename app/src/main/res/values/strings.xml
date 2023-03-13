@@ -27,4 +27,5 @@
     <string name="tituloTaquilla">TAQUILLA</string>
     <string name="titulo_pelicula">TITULO:</string>
     <string name="sinopsis_pelicula">SINOPSIS:</string>
+    <string name="sala_pelicula">SALA:</string>
 </resources>

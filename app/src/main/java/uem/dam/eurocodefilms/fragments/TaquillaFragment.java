@@ -21,6 +21,7 @@ public class TaquillaFragment extends Fragment {
     TextView tvRepreTitulo;
     TextView tvRepreSinopsis;
 
+
     public TaquillaFragment() {
         // Required empty public constructor
     }
