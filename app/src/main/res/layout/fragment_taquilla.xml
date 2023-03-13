@@ -14,27 +14,30 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="@string/tituloTaquilla"
-        android:textSize="@dimen/titulo" />
+        android:textSize="@dimen/titulo"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:id="@+id/llDetalle1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvtaquilla"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margen_app">
 
         <TextView
             android:id="@+id/tvTituloPelicula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="8"
+            android:layout_weight="6"
             android:text="@string/titulo_pelicula"/>
 
         <TextView
             android:id="@+id/tvRepreTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textStyle="bold"/>
 
 
     </LinearLayout>
@@ -44,20 +47,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/llDetalle1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margen_app">
 
         <TextView
             android:id="@+id/tvSinopsisPelicula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="6"
+            android:layout_weight="4"
             android:text="@string/sinopsis_pelicula"/>
 
         <TextView
             android:id="@+id/tvRepreSinopsis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textStyle="bold"/>
 
 
     </LinearLayout>
