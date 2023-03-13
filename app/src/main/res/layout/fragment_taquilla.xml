@@ -148,138 +148,341 @@
         android:textAlignment="center"/>
 
     <LinearLayout
-        android:id="@+id/llButacas"
+        android:id="@+id/llAsiento1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvButacas"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/margen_app">
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvFila"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:text="@string/fila"/>
 
-            <RadioButton
-                android:id="@+id/butaca1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1"
-                android:textAlignment="center"/>
+        <EditText
+        android:id="@+id/etFila"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/intrFila"/>
 
-            <RadioButton
-                android:id="@+id/butaca2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="2"
-                android:textAlignment="center"/>
-
-            <RadioButton
-                android:id="@+id/butaca3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="3"
-                android:textAlignment="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvAsiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:text="@string/asiento"/>
 
-            <RadioButton
-                android:id="@+id/butaca4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="4"
-                android:textAlignment="center"/>
-
-            <RadioButton
-                android:id="@+id/butaca5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"/>
-
-            <RadioButton
-                android:id="@+id/butaca6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="6"
-                android:textAlignment="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/etAsiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/butaca7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="7"
-                android:textAlignment="center"/>
-
-            <RadioButton
-                android:id="@+id/butaca8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="8"
-                android:textAlignment="center"/>
-
-            <RadioButton
-                android:id="@+id/butaca9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="9"
-                android:textAlignment="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/butaca10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="10"
-                android:textAlignment="center"/>
-
-            <RadioButton
-                android:id="@+id/butaca11"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="11"
-                android:textAlignment="center"/>
-
-            <RadioButton
-                android:id="@+id/butaca12"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="12"
-                android:textAlignment="center"/>
-
-        </LinearLayout>
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAsiento2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAsiento1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFila2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fila"/>
+
+        <EditText
+            android:id="@+id/etFila2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intrFila"/>
+
+        <TextView
+            android:id="@+id/tvAsiento2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/asiento"/>
+
+        <EditText
+            android:id="@+id/etAsiento2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAsiento3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAsiento2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFila3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fila"/>
+
+        <EditText
+            android:id="@+id/etFila3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intrFila"/>
+
+        <TextView
+            android:id="@+id/tvAsiento3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/asiento"/>
+
+        <EditText
+            android:id="@+id/etAsiento3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAsiento4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAsiento3"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFila4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fila"/>
+
+        <EditText
+            android:id="@+id/etFila4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intrFila"/>
+
+        <TextView
+            android:id="@+id/tvAsiento4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/asiento"/>
+
+        <EditText
+            android:id="@+id/etAsiento4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAsiento5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAsiento4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFila5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fila"/>
+
+        <EditText
+            android:id="@+id/etFila5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intrFila"/>
+
+        <TextView
+            android:id="@+id/tvAsiento5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/asiento"/>
+
+        <EditText
+            android:id="@+id/etAsiento5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAsiento6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAsiento5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFila6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fila"/>
+
+        <EditText
+            android:id="@+id/etFila6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intrFila"/>
+
+        <TextView
+            android:id="@+id/tvAsiento6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/asiento"/>
+
+        <EditText
+            android:id="@+id/etAsiento6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAsiento7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAsiento6"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFila7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fila"/>
+
+        <EditText
+            android:id="@+id/etFila7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intrFila"/>
+
+        <TextView
+            android:id="@+id/tvAsiento7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/asiento"/>
+
+        <EditText
+            android:id="@+id/etAsiento7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAsiento8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llAsiento7"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFila8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fila"/>
+
+        <EditText
+            android:id="@+id/etFila8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intrFila"/>
+
+        <TextView
+            android:id="@+id/tvAsiento8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/asiento"/>
+
+        <EditText
+            android:id="@+id/etAsiento8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAsiento9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llAsiento8"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvFila9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/fila"/>
+
+            <EditText
+                android:id="@+id/etFila9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/intrFila"/>
+
+            <TextView
+                android:id="@+id/tvAsiento9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/asiento"/>
+
+            <EditText
+                android:id="@+id/etAsiento9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/intAsiento"/>
+
+        </LinearLayout>
+
+
+
+
 
     <TextView
         android:id="@+id/tvAgradecimiento"

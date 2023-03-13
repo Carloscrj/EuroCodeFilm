@@ -33,4 +33,8 @@
     <string name="btnEntradas">COMPRAR ENTRADAS</string>
     <string name="tv_agradecimiento">!!!QUE DISFRUTE DE LA PELÍCULA!!!</string>
     <string name="tv_asientos">ELIJA SUS ASIENTOS</string>
+    <string name="fila">Fila</string>
+    <string name="intrFila">Elija Fila</string>
+    <string name="asiento">Asiento:</string>
+    <string name="intAsiento">Asiento</string>
 </resources>

@@ -52,22 +52,14 @@ public class TaquillaFragment extends Fragment{
 
     Button btnEntradas;
 
-    RadioButton butaca1;
-    RadioButton butaca2;
-    RadioButton butaca3;
-    RadioButton butaca4;
-    RadioButton butaca5;
-    RadioButton butaca6;
-    RadioButton butaca7;
-    RadioButton butaca8;
-    RadioButton butaca9;
-    RadioButton butaca10;
-    RadioButton butaca11;
-    RadioButton butaca12;
 
     ImageView ivTaquilla;
 
-    LinearLayout llButacas;
+    LinearLayout llAsiento1;
+    LinearLayout llAsiento2;
+    LinearLayout llAsiento3;
+
+
 
 
 
@@ -117,19 +109,13 @@ public class TaquillaFragment extends Fragment{
         tvAgradecimiento = vista.findViewById(R.id.tvAgradecimiento);
         btnEntradas = vista.findViewById(R.id.btnEntradas);
         ivTaquilla = vista.findViewById(R.id.ivTaquilla);
-        butaca1 = vista.findViewById(R.id.butaca1);
-        butaca2 = vista.findViewById(R.id.butaca2);
-        butaca3 = vista.findViewById(R.id.butaca3);
-        butaca4 = vista.findViewById(R.id.butaca4);
-        butaca5 = vista.findViewById(R.id.butaca5);
-        butaca6 = vista.findViewById(R.id.butaca6);
-        butaca7 = vista.findViewById(R.id.butaca7);
-        butaca8 = vista.findViewById(R.id.butaca8);
-        butaca9 = vista.findViewById(R.id.butaca9);
-        butaca10 = vista.findViewById(R.id.butaca10);
-        butaca11 = vista.findViewById(R.id.butaca11);
-        butaca12 = vista.findViewById(R.id.butaca12);
+        llAsiento1 = vista.findViewById(R.id.llAsiento1);
+        llAsiento2 = vista.findViewById(R.id.llAsiento2);
+        llAsiento3 = vista.findViewById(R.id.llAsiento3);
 
+        llAsiento1.setVisibility(View.GONE);
+        llAsiento2.setVisibility(View.GONE);
+        llAsiento3.setVisibility(View.GONE);
         ivTaquilla.setVisibility(View.GONE);
         tvAgradecimiento.setVisibility(View.GONE);
 
@@ -142,7 +128,7 @@ public class TaquillaFragment extends Fragment{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int numEntradas = Integer.parseInt(spnEntradas.getSelectedItem().toString());
                 tvReprePrecio.setText(String.valueOf(numEntradas * 8.60));
-                habilitarRadioButtons(numEntradas);
+
             }
 
             @Override
@@ -170,18 +156,7 @@ public class TaquillaFragment extends Fragment{
                 tvRepreSinopsis.setVisibility(View.GONE);
                 tvRepreSala.setVisibility(View.GONE);
                 btnEntradas.setVisibility(View.GONE);
-                butaca1.setVisibility(View.GONE);
-                butaca2.setVisibility(View.GONE);
-                butaca3.setVisibility(View.GONE);
-                butaca4.setVisibility(View.GONE);
-                butaca5.setVisibility(View.GONE);
-                butaca6.setVisibility(View.GONE);
-                butaca7.setVisibility(View.GONE);
-                butaca8.setVisibility(View.GONE);
-                butaca9.setVisibility(View.GONE);
-                butaca10.setVisibility(View.GONE);
-                butaca11.setVisibility(View.GONE);
-                butaca12.setVisibility(View.GONE);
+
                 ivTaquilla.setVisibility(View.VISIBLE);
                 tvAgradecimiento.setVisibility(View.VISIBLE);
             }
@@ -190,16 +165,5 @@ public class TaquillaFragment extends Fragment{
         return vista;
     }
 
-    private void habilitarRadioButtons(int numEntradas) {
-        int contador = 0;
-        for (RadioButton radioButton : Arrays.asList(butaca1, butaca2, butaca3, butaca4, butaca5, butaca6, butaca7, butaca8, butaca9, butaca10, butaca11, butaca12)) {
-            if (contador < numEntradas) {
-                radioButton.setEnabled(true);
-            } else {
-                radioButton.setChecked(false);
-                radioButton.setEnabled(false);
-            }
-            contador++;
-        }
-    }
+
 }
