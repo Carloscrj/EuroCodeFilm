@@ -16,6 +16,7 @@ public class TaquillaFragment extends Fragment {
 
     private String pelicula;
     private String sinopsis;
+    private String sala;
 
     TextView tvRepreTitulo;
     TextView tvRepreSinopsis;
@@ -25,11 +26,12 @@ public class TaquillaFragment extends Fragment {
     }
 
 
-    public static TaquillaFragment newInstance(String pelicula, String sinopsis) {
+    public static TaquillaFragment newInstance(String pelicula, String sinopsis, String sala) {
         TaquillaFragment fragment = new TaquillaFragment();
         Bundle args = new Bundle();
         args.putString(CarteleraFragment.CLAVE_PELICULA, pelicula);
         args.putString(CarteleraFragment.CLAVE_SINOPSIS, sinopsis);
+        args.putString(CarteleraFragment.CLAVE_SALA, sala);
         fragment.setArguments(args);
         return fragment;
     }
@@ -40,6 +42,7 @@ public class TaquillaFragment extends Fragment {
         if (getArguments() != null) {
             pelicula = getArguments().getString(CarteleraFragment.CLAVE_PELICULA);
             sinopsis = getArguments().getString(CarteleraFragment.CLAVE_SINOPSIS);
+            sala = getArguments().getString(CarteleraFragment.CLAVE_SALA);
         }
     }
 

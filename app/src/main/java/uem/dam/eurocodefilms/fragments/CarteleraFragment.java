@@ -31,6 +31,7 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
     public static final String CLAVE_PELICULA = "PELICULA";
     public static final String CLAVE_SINOPSIS = "SINOPSIS";
+    public static final String CLAVE_SALA = "SALA";
     Spinner spnCartelera;
     Button btnCartelera;
 
@@ -122,131 +123,70 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
             });
 
         } else {
-            Log.d("TAG", "onClick: " + v.getId());
-            if (tvCartCines.getText().toString().equals("CALLE FUENCARRAL")){
+            if (tvCartCines.getText().toString().equals("CALLE FUENCARRAL")) {
                 cineSeleccionado = "CINE_CALLE_FUENCARRAL";
-            } else if (tvCartCines.getText().toString().equals("LAS ROSAS")){
+            } else if (tvCartCines.getText().toString().equals("LAS ROSAS")) {
                 cineSeleccionado = "CINE_LAS_ROSAS";
-            } else if (tvCartCines.getText().toString().equals("LA GAVIA")){
+            } else if (tvCartCines.getText().toString().equals("LA GAVIA")) {
                 cineSeleccionado = "CINE_LA_GAVIA";
-            } else if (tvCartCines.getText().toString().equals("MANOTERAS")){
+            } else if (tvCartCines.getText().toString().equals("MANOTERAS")) {
                 cineSeleccionado = "CINE_MANOTERAS";
-            } else if (tvCartCines.getText().toString().equals("MENDEZ ALVARO")){
+            } else if (tvCartCines.getText().toString().equals("MENDEZ ALVARO")) {
                 cineSeleccionado = "CINE_MENDEZ_ALVARO";
-            } else if (tvCartCines.getText().toString().equals("PRINCIPE PIO")){
+            } else if (tvCartCines.getText().toString().equals("PRINCIPE PIO")) {
                 cineSeleccionado = "CINE_PRINCIPE_PIO";
             }
 
             cineRef = FirebaseDatabase.getInstance().getReference(cineSeleccionado);
-            String pelicula = "";
-            String sinopsis = "";
-
-
             int pos = rvCartelera.getChildAdapterPosition(v);
-            if (pos == 0){
-                cineRef.child("peliculas").child("pelicula1").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String pelicula = dataSnapshot.getValue(String.class);
-                        cineRef.child("sinopsis").child("sinopsis1").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                enviarDatosPelicula(dataSnapshot, pelicula);
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.d("TAG", "Failed to read value.", databaseError.toException());
-                            }
-                        });
-                    }
+            String[] peliculas = {"pelicula1", "pelicula2", "pelicula3", "pelicula4"};
+            String[] sinopsisList = {"sinopsis1", "sinopsis2", "sinopsis3", "sinopsis4"};
+            String[] salaList = {"sala1", "sala2", "sala3", "sala4"};
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.d("TAG", "Failed to read value.", databaseError.toException());
-                    }
-                });
-            }else if (pos == 1){
-                cineRef.child("peliculas").child("pelicula2").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String pelicula = dataSnapshot.getValue(String.class);
-                        cineRef.child("sinopsis").child("sinopsis2").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                enviarDatosPelicula(dataSnapshot, pelicula);
-                            }
+            cineRef.child("peliculas").child(peliculas[pos]).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String pelicula = dataSnapshot.getValue(String.class);
+                    cineRef.child("sinopsis").child(sinopsisList[pos]).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String sinopsis = dataSnapshot.getValue(String.class);
+                            cineRef.child("salas").child(salaList[pos]).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    enviarDatosPelicula(dataSnapshot, pelicula, sinopsis);
+                                }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.d("TAG", "Failed to read value.", databaseError.toException());
-                            }
-                        });
-                    }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    Log.d("TAG", "Failed to read value.", databaseError.toException());
+                                }
+                            });
+                        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.d("TAG", "Failed to read value.", databaseError.toException());
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Log.d("TAG", "Failed to read value.", databaseError.toException());
+                        }
+                    });
+                }
 
-            }else if (pos == 2){
-                cineRef.child("peliculas").child("pelicula3").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String pelicula = dataSnapshot.getValue(String.class);
-                        cineRef.child("sinopsis").child("sinopsis3").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                enviarDatosPelicula(dataSnapshot, pelicula);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.d("TAG", "Failed to read value.", databaseError.toException());
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.d("TAG", "Failed to read value.", databaseError.toException());
-                    }
-                });
-            }else if (pos == 3){
-                cineRef.child("peliculas").child("pelicula4").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String pelicula = dataSnapshot.getValue(String.class);
-                        cineRef.child("sinopsis").child("sinopsis4").addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                enviarDatosPelicula(dataSnapshot, pelicula);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.d("TAG", "Failed to read value.", databaseError.toException());
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.d("TAG", "Failed to read value.", databaseError.toException());
-                    }
-                });
-            }
-
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("TAG", "Failed to read value.", databaseError.toException());
+                }
+            });
         }
     }
 
-    private void enviarDatosPelicula(@NonNull DataSnapshot dataSnapshot, String pelicula) {
-        String sinopsis = dataSnapshot.getValue(String.class);
+    private void enviarDatosPelicula(@NonNull DataSnapshot dataSnapshot, String pelicula, String sinopsis) {
+        String sala = dataSnapshot.getValue(String.class);
         fm = getActivity().getSupportFragmentManager();
         ft = fm.beginTransaction();
-        ft.replace(R.id.flContenedor, TaquillaFragment.newInstance(pelicula, sinopsis));
+        ft.replace(R.id.flContenedor, TaquillaFragment.newInstance(pelicula, sinopsis, sala));
         ft.addToBackStack(null);
         ft.commit();
     }
+
 }
