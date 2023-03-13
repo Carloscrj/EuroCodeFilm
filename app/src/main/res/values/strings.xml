@@ -37,4 +37,5 @@
     <string name="intrFila">Elija Fila</string>
     <string name="asiento">Asiento:</string>
     <string name="intAsiento">Asiento</string>
+    <string name="btn_elige_asientos">ELIGE ASIENTO</string>
 </resources>

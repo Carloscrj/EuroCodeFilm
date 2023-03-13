@@ -52,6 +52,9 @@ public class TaquillaFragment extends Fragment{
 
     Button btnEntradas;
 
+    Button btnEligeAsientos;
+
+    ImageView ivMapaCine;
     ImageView ivTaquilla;
 
     LinearLayout llAsiento1;
@@ -111,6 +114,8 @@ public class TaquillaFragment extends Fragment{
         tvRepreSala = vista.findViewById(R.id.tvRepreSala);
         tvAgradecimiento = vista.findViewById(R.id.tvAgradecimiento);
         btnEntradas = vista.findViewById(R.id.btnEntradas);
+        btnEligeAsientos = vista.findViewById(R.id.btnEligeAsientos);
+        ivMapaCine = vista.findViewById(R.id.ivMapaCine);
         ivTaquilla = vista.findViewById(R.id.ivTaquilla);
 
         llAsiento1 = vista.findViewById(R.id.llAsiento1);
@@ -125,12 +130,82 @@ public class TaquillaFragment extends Fragment{
 
         ivTaquilla.setVisibility(View.GONE);
         tvAgradecimiento.setVisibility(View.GONE);
+        llAsiento1.setVisibility(View.GONE);
+        llAsiento2.setVisibility(View.GONE);
+        llAsiento3.setVisibility(View.GONE);
+        llAsiento4.setVisibility(View.GONE);
+        llAsiento5.setVisibility(View.GONE);
+        llAsiento6.setVisibility(View.GONE);
+        llAsiento7.setVisibility(View.GONE);
+        llAsiento8.setVisibility(View.GONE);
+        llAsiento9.setVisibility(View.GONE);
+
+
 
         tvRepreTitulo.setText(pelicula);
         tvRepreSinopsis.setText(sinopsis);
         tvRepreSala.setText(sala);
 
-
+        btnEligeAsientos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (spnEntradas.getSelectedItem().toString().equals("1")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                }else if (spnEntradas.getSelectedItem().toString().equals("2")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                    llAsiento2.setVisibility(View.VISIBLE);
+                }else if (spnEntradas.getSelectedItem().toString().equals("3")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                    llAsiento2.setVisibility(View.VISIBLE);
+                    llAsiento3.setVisibility(View.VISIBLE);
+                }else if (spnEntradas.getSelectedItem().toString().equals("4")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                    llAsiento2.setVisibility(View.VISIBLE);
+                    llAsiento3.setVisibility(View.VISIBLE);
+                    llAsiento4.setVisibility(View.VISIBLE);
+                }else if (spnEntradas.getSelectedItem().toString().equals("5")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                    llAsiento2.setVisibility(View.VISIBLE);
+                    llAsiento3.setVisibility(View.VISIBLE);
+                    llAsiento4.setVisibility(View.VISIBLE);
+                    llAsiento5.setVisibility(View.VISIBLE);
+                }else if (spnEntradas.getSelectedItem().toString().equals("6")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                    llAsiento2.setVisibility(View.VISIBLE);
+                    llAsiento3.setVisibility(View.VISIBLE);
+                    llAsiento4.setVisibility(View.VISIBLE);
+                    llAsiento5.setVisibility(View.VISIBLE);
+                    llAsiento6.setVisibility(View.VISIBLE);
+                }else if (spnEntradas.getSelectedItem().toString().equals("7")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                    llAsiento2.setVisibility(View.VISIBLE);
+                    llAsiento3.setVisibility(View.VISIBLE);
+                    llAsiento4.setVisibility(View.VISIBLE);
+                    llAsiento5.setVisibility(View.VISIBLE);
+                    llAsiento6.setVisibility(View.VISIBLE);
+                    llAsiento7.setVisibility(View.VISIBLE);
+                }else if (spnEntradas.getSelectedItem().toString().equals("8")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                    llAsiento2.setVisibility(View.VISIBLE);
+                    llAsiento3.setVisibility(View.VISIBLE);
+                    llAsiento4.setVisibility(View.VISIBLE);
+                    llAsiento5.setVisibility(View.VISIBLE);
+                    llAsiento6.setVisibility(View.VISIBLE);
+                    llAsiento7.setVisibility(View.VISIBLE);
+                    llAsiento8.setVisibility(View.VISIBLE);
+                }else if (spnEntradas.getSelectedItem().toString().equals("9")){
+                    llAsiento1.setVisibility(View.VISIBLE);
+                    llAsiento2.setVisibility(View.VISIBLE);
+                    llAsiento3.setVisibility(View.VISIBLE);
+                    llAsiento4.setVisibility(View.VISIBLE);
+                    llAsiento5.setVisibility(View.VISIBLE);
+                    llAsiento6.setVisibility(View.VISIBLE);
+                    llAsiento7.setVisibility(View.VISIBLE);
+                    llAsiento8.setVisibility(View.VISIBLE);
+                    llAsiento9.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         btnEntradas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,6 +223,17 @@ public class TaquillaFragment extends Fragment{
                 tvRepreSinopsis.setVisibility(View.GONE);
                 tvRepreSala.setVisibility(View.GONE);
                 btnEntradas.setVisibility(View.GONE);
+                llAsiento1.setVisibility(View.GONE);
+                llAsiento2.setVisibility(View.GONE);
+                llAsiento3.setVisibility(View.GONE);
+                llAsiento4.setVisibility(View.GONE);
+                llAsiento5.setVisibility(View.GONE);
+                llAsiento6.setVisibility(View.GONE);
+                llAsiento7.setVisibility(View.GONE);
+                llAsiento8.setVisibility(View.GONE);
+                llAsiento9.setVisibility(View.GONE);
+                btnEligeAsientos.setVisibility(View.GONE);
+                ivMapaCine.setVisibility(View.GONE);
                 ivTaquilla.setVisibility(View.VISIBLE);
                 tvAgradecimiento.setVisibility(View.VISIBLE);
             }

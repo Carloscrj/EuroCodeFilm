@@ -8,4 +8,5 @@
     <dimen name="titulo">20dp</dimen>
     <dimen name="margen_btnEntradas">120dp</dimen>
     <dimen name="tv_gracias">30dp</dimen>
+    <dimen name="margen_btnAsientos">80dp</dimen>
 </resources>

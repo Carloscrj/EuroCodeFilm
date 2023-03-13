@@ -147,42 +147,59 @@
         android:text="@string/tv_asientos"
         android:textAlignment="center"/>
 
-    <LinearLayout
-        android:id="@+id/llAsiento1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvButacas"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvFila"
+        <Button
+            android:id="@+id/btnEligeAsientos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/fila"/>
+            android:layout_marginRight="@dimen/margen_btnAsientos"
+            android:layout_marginLeft="@dimen/margen_btnAsientos"
+            android:layout_below="@+id/tvButacas"
+            android:text="@string/btn_elige_asientos"/>
 
-        <EditText
-        android:id="@+id/etFila"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="@string/intrFila"/>
+        <ImageView
+            android:id="@+id/ivMapaCine"
+            android:layout_width="wrap_content"
+            android:layout_height="372dp"
+            android:layout_below="@+id/tvButacas"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/mapacinecolores" />
 
-        <TextView
-            android:id="@+id/tvAsiento"
+        <LinearLayout
+            android:id="@+id/llAsiento1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/asiento"/>
+            android:layout_below="@+id/ivMapaCine"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/etAsiento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/intAsiento"/>
+            <TextView
+                android:id="@+id/tvFila"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/fila" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/etFila"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/intrFila" />
+
+            <TextView
+                android:id="@+id/tvAsiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/asiento" />
+
+            <EditText
+                android:id="@+id/etAsiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/intAsiento" />
+
+        </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llAsiento2"
@@ -509,7 +526,6 @@
         android:layout_marginRight="@dimen/margen_btnEntradas"
         android:layout_marginLeft="@dimen/margen_btnEntradas"
         android:text="@string/btnEntradas"
-        android:layout_marginBottom="@dimen/margen_app"
         android:layout_alignParentBottom="true" />
 
     </LinearLayout>
