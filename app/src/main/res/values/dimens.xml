@@ -6,4 +6,6 @@
     <dimen name="tv_size">20sp</dimen>
     <dimen name="tv_usuario_size">40sp</dimen>
     <dimen name="titulo">20dp</dimen>
+    <dimen name="margen_btnEntradas">120dp</dimen>
+    <dimen name="tv_gracias">30dp</dimen>
 </resources>

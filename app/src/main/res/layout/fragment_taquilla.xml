@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.TaquillaFragment">
 
 
 
 
     <TextView
-        android:id="@+id/tvtaquilla"
+        android:id="@+id/tvTaquilla"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -21,7 +22,7 @@
         android:id="@+id/llDetalle1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvtaquilla"
+        android:layout_below="@+id/tvTaquilla"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/margen_app">
 
@@ -129,6 +130,177 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvButacas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llDetalle4"
+        android:layout_marginTop="@dimen/margen_app"
+        android:text="@string/tv_asientos"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:id="@+id/llButacas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvButacas"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margen_app">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/butaca1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
+                android:textAlignment="center"/>
+
+            <RadioButton
+                android:id="@+id/butaca2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2"
+                android:textAlignment="center"/>
+
+            <RadioButton
+                android:id="@+id/butaca3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/butaca4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4"
+                android:textAlignment="center"/>
+
+            <RadioButton
+                android:id="@+id/butaca5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"/>
+
+            <RadioButton
+                android:id="@+id/butaca6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="6"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/butaca7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="7"
+                android:textAlignment="center"/>
+
+            <RadioButton
+                android:id="@+id/butaca8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="8"
+                android:textAlignment="center"/>
+
+            <RadioButton
+                android:id="@+id/butaca9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="9"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/butaca10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10"
+                android:textAlignment="center"/>
+
+            <RadioButton
+                android:id="@+id/butaca11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="11"
+                android:textAlignment="center"/>
+
+            <RadioButton
+                android:id="@+id/butaca12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="12"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAgradecimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_agradecimiento"
+        android:textAlignment="center"
+        android:textSize="@dimen/tv_gracias"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorPrimaryVariant"/>
+
+    <ImageView
+        android:layout_width="154dp"
+        android:layout_height="167dp"
+        android:layout_below="@+id/llButacas"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margen_app"
+        app:srcCompat="@drawable/eurocode" />
+
+    <Button
+        android:id="@+id/btnEntradas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margen_btnEntradas"
+        android:layout_marginLeft="@dimen/margen_btnEntradas"
+        android:text="@string/btnEntradas"
+        android:layout_marginBottom="@dimen/margen_app"
+        android:layout_alignParentBottom="true" />
 
 
 
