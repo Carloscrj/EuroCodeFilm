@@ -117,18 +117,11 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener {
         llAsiento8 = vista.findViewById(R.id.llAsiento8);
         llAsiento9 = vista.findViewById(R.id.llAsiento9);
 
-        ivTaquilla.setVisibility(View.GONE);
-        tvAgradecimiento.setVisibility(View.GONE);
-        llAsiento1.setVisibility(View.GONE);
-        llAsiento2.setVisibility(View.GONE);
-        llAsiento3.setVisibility(View.GONE);
-        llAsiento4.setVisibility(View.GONE);
-        llAsiento5.setVisibility(View.GONE);
-        llAsiento6.setVisibility(View.GONE);
-        llAsiento7.setVisibility(View.GONE);
-        llAsiento8.setVisibility(View.GONE);
-        llAsiento9.setVisibility(View.GONE);
-
+        View[] filas = {ivTaquilla, tvAgradecimiento, llAsiento1, llAsiento2, llAsiento3, llAsiento4, llAsiento5, llAsiento6,
+                llAsiento7, llAsiento8, llAsiento9};
+        for (View fila : filas) {
+            fila.setVisibility(View.GONE);
+        }
         tvRepreTitulo.setText(pelicula);
         tvRepreSinopsis.setText(sinopsis);
         tvRepreSala.setText(sala);
@@ -166,7 +159,6 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener {
             if (fila.getVisibility() == View.VISIBLE) {
                 for (int i = 0; i < ((LinearLayout) fila).getChildCount(); i++) {
                     View view = ((LinearLayout) fila).getChildAt(i);
-                    //Comprobar que el EditText no está vacío:
                     if (view instanceof EditText) {
                         if (((EditText) view).getText().toString().isEmpty()) {
                             Toast.makeText(getContext(), R.string.selecciona_asiento, Toast.LENGTH_SHORT).show();
