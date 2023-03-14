@@ -10,6 +10,7 @@
     </string-array>
 
     <string-array name="numeroEntradas" >
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -22,6 +23,7 @@
 
     </string-array>
     <string-array name="horarios">
+        <item>Seleccionar</item>
         <item>12:00</item>
         <item>16:00</item>
         <item>18:00</item>

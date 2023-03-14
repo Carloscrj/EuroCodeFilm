@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -159,6 +160,35 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener {
     }
 
     private void comprarEntradas() {
+        View[] filas = {llAsiento1, llAsiento2, llAsiento3, llAsiento4, llAsiento5, llAsiento6, llAsiento7, llAsiento8, llAsiento9};
+        boolean asientoSeleccionado = false;
+        for (View fila : filas) {
+            if (fila.getVisibility() == View.VISIBLE) {
+                for (int i = 0; i < ((LinearLayout) fila).getChildCount(); i++) {
+                    View view = ((LinearLayout) fila).getChildAt(i);
+                    //Comprobar que el EditText no está vacío:
+                    if (view instanceof EditText) {
+                        if (((EditText) view).getText().toString().isEmpty()) {
+                            Toast.makeText(getContext(), R.string.selecciona_asiento, Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            asientoSeleccionado = true;
+                        }
+                    }
+                }
+            }
+        }
+        if (spnEntradas.getSelectedItemPosition() == 0) {
+            Toast.makeText(getContext(), R.string.selecciona_entradas, Toast.LENGTH_SHORT).show();
+            return;
+        } else if (spnHorario.getSelectedItemPosition() == 0) {
+            Toast.makeText(getContext(), R.string.selecciona_horario, Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!asientoSeleccionado) {
+            Toast.makeText(getContext(), R.string.selecciona_asiento, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Toast.makeText(getContext(), R.string.compra_hecha, Toast.LENGTH_SHORT).show();
         View[] views = {tvTaquilla, tvTituloPelicula, tvSinopsisPelicula, tvSalaPelicula,
                 tvNumEntradas, tvPrecio, spnEntradas, tvHorario, spnHorario, tvReprePrecio, tvRepreTitulo,

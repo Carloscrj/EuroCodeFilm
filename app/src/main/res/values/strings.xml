@@ -40,4 +40,7 @@
     <string name="btn_elige_asientos">ELIGE ASIENTO</string>
     <string name="compra_hecha">"Entradas compradas"</string>
     <string name="tv_horario">Hora de la sesión:</string>
+    <string name="selecciona_asiento">No se han seleccionado asientos</string>
+    <string name="selecciona_horario">No se ha seleccionado horario</string>
+    <string name="selecciona_entradas">No se han seleccionado entradas</string>
 </resources>
