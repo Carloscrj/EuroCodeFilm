@@ -69,10 +69,12 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
             public void onDataChange(@NonNull com.google.firebase.database.DataSnapshot dataSnapshot) {
                 for (com.google.firebase.database.DataSnapshot data : dataSnapshot.getChildren()) {
                     Perfil perfil = data.getValue(Perfil.class);
-                    if (user.getEmail().equals(perfil.getEmail())) {
-                        String nombre = perfil.getNombre();
-                        String nombreCap = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
-                        tvPerfil.setText(nombreCap);
+                    if (user != null) {
+                        if (user.getEmail().equals(perfil.getEmail())) {
+                            String nombre = perfil.getNombre();
+                            String nombreCap = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
+                            tvPerfil.setText(nombreCap);
+                        }
                     }
                 }
             }
