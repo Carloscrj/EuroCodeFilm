@@ -43,4 +43,5 @@
     <string name="selecciona_asiento">No se han seleccionado asientos</string>
     <string name="selecciona_horario">No se ha seleccionado horario</string>
     <string name="selecciona_entradas">No se han seleccionado entradas</string>
+    <string name="cuenta_google">Acción deshabilitada con cuenta Google</string>
 </resources>

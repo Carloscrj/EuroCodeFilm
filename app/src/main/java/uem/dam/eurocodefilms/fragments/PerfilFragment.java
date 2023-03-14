@@ -94,25 +94,32 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
     }
 
     private void cambiarPwd() {
-        fba = FirebaseAuth.getInstance();
-        user = fba.getCurrentUser();
-        String nuevaPwd = etNuevaPwd.getText().toString();
-        boolean validPwd = isValidPwd(nuevaPwd);
+        if (user == null) {
+            Toast.makeText(getActivity(), R.string.cuenta_google, Toast.LENGTH_SHORT).show();
+            return;
+        }else{
+            fba = FirebaseAuth.getInstance();
+            user = fba.getCurrentUser();
+            String nuevaPwd = etNuevaPwd.getText().toString();
+            boolean validPwd = isValidPwd(nuevaPwd);
 
-        if (validPwd) {
-            user.updatePassword(nuevaPwd).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getActivity(), R.string.cambiar_pwd_ok, Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getActivity(), R.string.cambiar_pwd_no_ok, Toast.LENGTH_SHORT).show();
+            if (validPwd) {
+                user.updatePassword(nuevaPwd).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getActivity(), R.string.cambiar_pwd_ok, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity(), R.string.cambiar_pwd_no_ok, Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
-        } else {
-            Toast.makeText(getActivity(), R.string.pwd_no_valido, Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                Toast.makeText(getActivity(), R.string.pwd_no_valido, Toast.LENGTH_SHORT).show();
+            }
+
         }
+
 
     }
 
@@ -125,18 +132,24 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
     private void borrarCuenta() {
         fba = FirebaseAuth.getInstance();
         user = fba.getCurrentUser();
-        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(getActivity(), R.string.borrar_ok, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), R.string.borrar_no_ok, Toast.LENGTH_SHORT).show();
+        if (user != null){
+            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getActivity(), R.string.borrar_ok, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), R.string.borrar_no_ok, Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
-        fba.signOut();
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent);
+            });
+            fba.signOut();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getActivity(), R.string.cuenta_google, Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }
