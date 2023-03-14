@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 import uem.dam.eurocodefilms.R;
 
-public class TaquillaFragment extends Fragment{
+public class TaquillaFragment extends Fragment implements View.OnClickListener{
 
 
     private String pelicula;
@@ -67,13 +67,9 @@ public class TaquillaFragment extends Fragment{
     LinearLayout llAsiento8;
     LinearLayout llAsiento9;
 
-
-
-
     public TaquillaFragment() {
         // Required empty public constructor
     }
-
 
     public static TaquillaFragment newInstance(String pelicula, String sinopsis, String sala) {
         TaquillaFragment fragment = new TaquillaFragment();
@@ -114,7 +110,9 @@ public class TaquillaFragment extends Fragment{
         tvRepreSala = vista.findViewById(R.id.tvRepreSala);
         tvAgradecimiento = vista.findViewById(R.id.tvAgradecimiento);
         btnEntradas = vista.findViewById(R.id.btnEntradas);
+        btnEntradas.setOnClickListener(this);
         btnEligeAsientos = vista.findViewById(R.id.btnEligeAsientos);
+        btnEligeAsientos.setOnClickListener(this);
         ivMapaCine = vista.findViewById(R.id.ivMapaCine);
         ivTaquilla = vista.findViewById(R.id.ivTaquilla);
 
@@ -140,105 +138,55 @@ public class TaquillaFragment extends Fragment{
         llAsiento8.setVisibility(View.GONE);
         llAsiento9.setVisibility(View.GONE);
 
-
-
         tvRepreTitulo.setText(pelicula);
         tvRepreSinopsis.setText(sinopsis);
         tvRepreSala.setText(sala);
 
-        btnEligeAsientos.setOnClickListener(new View.OnClickListener() {
+        spnEntradas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                if (spnEntradas.getSelectedItem().toString().equals("1")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                }else if (spnEntradas.getSelectedItem().toString().equals("2")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                    llAsiento2.setVisibility(View.VISIBLE);
-                }else if (spnEntradas.getSelectedItem().toString().equals("3")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                    llAsiento2.setVisibility(View.VISIBLE);
-                    llAsiento3.setVisibility(View.VISIBLE);
-                }else if (spnEntradas.getSelectedItem().toString().equals("4")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                    llAsiento2.setVisibility(View.VISIBLE);
-                    llAsiento3.setVisibility(View.VISIBLE);
-                    llAsiento4.setVisibility(View.VISIBLE);
-                }else if (spnEntradas.getSelectedItem().toString().equals("5")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                    llAsiento2.setVisibility(View.VISIBLE);
-                    llAsiento3.setVisibility(View.VISIBLE);
-                    llAsiento4.setVisibility(View.VISIBLE);
-                    llAsiento5.setVisibility(View.VISIBLE);
-                }else if (spnEntradas.getSelectedItem().toString().equals("6")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                    llAsiento2.setVisibility(View.VISIBLE);
-                    llAsiento3.setVisibility(View.VISIBLE);
-                    llAsiento4.setVisibility(View.VISIBLE);
-                    llAsiento5.setVisibility(View.VISIBLE);
-                    llAsiento6.setVisibility(View.VISIBLE);
-                }else if (spnEntradas.getSelectedItem().toString().equals("7")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                    llAsiento2.setVisibility(View.VISIBLE);
-                    llAsiento3.setVisibility(View.VISIBLE);
-                    llAsiento4.setVisibility(View.VISIBLE);
-                    llAsiento5.setVisibility(View.VISIBLE);
-                    llAsiento6.setVisibility(View.VISIBLE);
-                    llAsiento7.setVisibility(View.VISIBLE);
-                }else if (spnEntradas.getSelectedItem().toString().equals("8")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                    llAsiento2.setVisibility(View.VISIBLE);
-                    llAsiento3.setVisibility(View.VISIBLE);
-                    llAsiento4.setVisibility(View.VISIBLE);
-                    llAsiento5.setVisibility(View.VISIBLE);
-                    llAsiento6.setVisibility(View.VISIBLE);
-                    llAsiento7.setVisibility(View.VISIBLE);
-                    llAsiento8.setVisibility(View.VISIBLE);
-                }else if (spnEntradas.getSelectedItem().toString().equals("9")){
-                    llAsiento1.setVisibility(View.VISIBLE);
-                    llAsiento2.setVisibility(View.VISIBLE);
-                    llAsiento3.setVisibility(View.VISIBLE);
-                    llAsiento4.setVisibility(View.VISIBLE);
-                    llAsiento5.setVisibility(View.VISIBLE);
-                    llAsiento6.setVisibility(View.VISIBLE);
-                    llAsiento7.setVisibility(View.VISIBLE);
-                    llAsiento8.setVisibility(View.VISIBLE);
-                    llAsiento9.setVisibility(View.VISIBLE);
-                }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int numEntradas = Integer.parseInt(spnEntradas.getSelectedItem().toString());
+                tvReprePrecio.setText(String.valueOf(numEntradas * 8.60));
             }
-        });
-        btnEntradas.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Entradas compradas", Toast.LENGTH_SHORT).show();
-                tvTaquilla.setVisibility(View.GONE);
-                tvTituloPelicula.setVisibility(View.GONE);
-                tvSinopsisPelicula.setVisibility(View.GONE);
-                tvSalaPelicula.setVisibility(View.GONE);
-                tvButacas.setVisibility(View.GONE);
-                tvNumEntradas.setVisibility(View.GONE);
-                tvPrecio.setVisibility(View.GONE);
-                spnEntradas.setVisibility(View.GONE);
-                tvReprePrecio.setVisibility(View.GONE);
-                tvRepreTitulo.setVisibility(View.GONE);
-                tvRepreSinopsis.setVisibility(View.GONE);
-                tvRepreSala.setVisibility(View.GONE);
-                btnEntradas.setVisibility(View.GONE);
-                llAsiento1.setVisibility(View.GONE);
-                llAsiento2.setVisibility(View.GONE);
-                llAsiento3.setVisibility(View.GONE);
-                llAsiento4.setVisibility(View.GONE);
-                llAsiento5.setVisibility(View.GONE);
-                llAsiento6.setVisibility(View.GONE);
-                llAsiento7.setVisibility(View.GONE);
-                llAsiento8.setVisibility(View.GONE);
-                llAsiento9.setVisibility(View.GONE);
-                btnEligeAsientos.setVisibility(View.GONE);
-                ivMapaCine.setVisibility(View.GONE);
-                ivTaquilla.setVisibility(View.VISIBLE);
-                tvAgradecimiento.setVisibility(View.VISIBLE);
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
         return vista;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnEntradas) {
+            comprarEntradas();
+        } else if (v.getId() == R.id.btnEligeAsientos) {
+            seleccionAsientos();
+        }
+    }
+
+    private void comprarEntradas() {
+        Toast.makeText(getContext(), R.string.compra_hecha, Toast.LENGTH_SHORT).show();
+        View[] views = {tvTaquilla, tvTituloPelicula, tvSinopsisPelicula, tvSalaPelicula, tvButacas,
+                tvNumEntradas, tvPrecio, spnEntradas, tvReprePrecio, tvRepreTitulo,
+                tvRepreSinopsis, tvRepreSala, btnEntradas, llAsiento1, llAsiento2,
+                llAsiento3, llAsiento4, llAsiento5, llAsiento6, llAsiento7, llAsiento8,
+                llAsiento9, btnEligeAsientos, ivMapaCine};
+        for (View view : views) {
+            view.setVisibility(View.GONE);
+        }
+        ivTaquilla.setVisibility(View.VISIBLE);
+        tvAgradecimiento.setVisibility(View.VISIBLE);
+    }
+
+    private void seleccionAsientos() {
+        int numEntradas = Integer.parseInt(spnEntradas.getSelectedItem().toString());
+        LinearLayout[] asientos = {llAsiento1, llAsiento2, llAsiento3, llAsiento4, llAsiento5,
+                llAsiento6, llAsiento7, llAsiento8, llAsiento9};
+        for (int i = 0; i < numEntradas; i++) {
+            asientos[i].setVisibility(View.VISIBLE);
+        }
     }
 }
