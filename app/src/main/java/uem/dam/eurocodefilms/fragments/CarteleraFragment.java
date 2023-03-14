@@ -79,6 +79,9 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnCartelera) {
+
+            imageList.clear();
+
             tvCartCines.setText(spnCartelera.getSelectedItem().toString());
 
             switch (spnCartelera.getSelectedItemPosition()) {
