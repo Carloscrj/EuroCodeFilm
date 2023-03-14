@@ -54,7 +54,6 @@
         android:id="@+id/llDetalle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/llDetalle1"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/margen_app">
 
@@ -79,7 +78,6 @@
         android:id="@+id/llDetalle3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/llDetalle2"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/margen_app">
 
@@ -104,7 +102,6 @@
         android:id="@+id/llDetalle4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/llDetalle3"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/margen_app">
 
@@ -138,69 +135,85 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvButacas"
+    <LinearLayout
+        android:id="@+id/llHorario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/llDetalle4"
-        android:layout_marginTop="@dimen/margen_app"
-        android:text="@string/tv_asientos"
-        android:textAlignment="center"/>
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margen_app">
 
-        <Button
-            android:id="@+id/btnEligeAsientos"
+        <TextView
+            android:id="@+id/tvHorario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margen_btnAsientos"
-            android:layout_marginLeft="@dimen/margen_btnAsientos"
-            android:layout_below="@+id/tvButacas"
-            android:text="@string/btn_elige_asientos"/>
+            android:layout_weight="1"
+            android:text="@string/tv_horario"/>
 
-        <ImageView
-            android:id="@+id/ivMapaCine"
-            android:layout_width="wrap_content"
-            android:layout_height="372dp"
-            android:layout_below="@+id/tvButacas"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/mapacinecolores" />
-
-        <LinearLayout
-            android:id="@+id/llAsiento1"
+        <Spinner
+            android:id="@+id/spnHorario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivMapaCine"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:entries="@array/horarios"/>
 
-            <TextView
-                android:id="@+id/tvFila"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/fila" />
 
-            <EditText
-                android:id="@+id/etFila"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/intrFila"
-                android:inputType="number"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvAsiento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/asiento" />
+    <Button
+        android:id="@+id/btnEligeAsientos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margen_btnAsientos"
+        android:layout_marginLeft="@dimen/margen_btnAsientos"
+        android:text="@string/btn_elige_asientos"
+        android:layout_marginTop="@dimen/margen_app"/>
 
-            <EditText
-                android:id="@+id/etAsiento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/intAsiento" />
+    <ImageView
+        android:id="@+id/ivMapaCine"
+        android:layout_width="wrap_content"
+        android:layout_height="372dp"
+        android:layout_below="@+id/tvButacas"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/mapacinecolores" />
 
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llAsiento1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivMapaCine"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFila"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fila" />
+
+        <EditText
+            android:id="@+id/etFila"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intrFila"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/tvAsiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/asiento" />
+
+        <EditText
+            android:id="@+id/etAsiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/intAsiento"
+            android:inputType="number"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llAsiento2"
@@ -236,7 +249,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intAsiento"/>
+            android:hint="@string/intAsiento"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -252,15 +266,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/fila"
-            android:inputType="number"/>
+            android:text="@string/fila"/>
 
         <EditText
             android:id="@+id/etFila3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intrFila"/>
+            android:hint="@string/intrFila"
+            android:inputType="number"/>
 
         <TextView
             android:id="@+id/tvAsiento3"
@@ -274,7 +288,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intAsiento"/>
+            android:hint="@string/intAsiento"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -290,15 +305,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/fila"
-            android:inputType="number"/>
+            android:text="@string/fila"/>
 
         <EditText
             android:id="@+id/etFila4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intrFila"/>
+            android:hint="@string/intrFila"
+            android:inputType="number"/>
 
         <TextView
             android:id="@+id/tvAsiento4"
@@ -312,7 +327,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intAsiento"/>
+            android:hint="@string/intAsiento"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -328,15 +344,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/fila"
-            android:inputType="number"/>
+            android:text="@string/fila"/>
 
         <EditText
             android:id="@+id/etFila5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intrFila"/>
+            android:hint="@string/intrFila"
+            android:inputType="number"/>
 
         <TextView
             android:id="@+id/tvAsiento5"
@@ -350,7 +366,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intAsiento"/>
+            android:hint="@string/intAsiento"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -366,15 +383,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/fila"
-            android:inputType="number"/>
+            android:text="@string/fila"/>
 
         <EditText
             android:id="@+id/etFila6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intrFila"/>
+            android:hint="@string/intrFila"
+            android:inputType="number"/>
 
         <TextView
             android:id="@+id/tvAsiento6"
@@ -388,7 +405,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intAsiento"/>
+            android:hint="@string/intAsiento"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -404,15 +422,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/fila"
-            android:inputType="number"/>
+            android:text="@string/fila"/>
 
         <EditText
             android:id="@+id/etFila7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intrFila"/>
+            android:hint="@string/intrFila"
+            android:inputType="number"/>
 
         <TextView
             android:id="@+id/tvAsiento7"
@@ -426,7 +444,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intAsiento"/>
+            android:hint="@string/intAsiento"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -464,7 +483,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/intAsiento"/>
+            android:hint="@string/intAsiento"
+            android:inputType="number"/>
 
         </LinearLayout>
 
@@ -480,15 +500,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/fila"
-                android:inputType="number"/>
+                android:text="@string/fila"/>
 
             <EditText
                 android:id="@+id/etFila9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/intrFila"/>
+                android:hint="@string/intrFila"
+                android:inputType="number"/>
 
             <TextView
                 android:id="@+id/tvAsiento9"
@@ -502,7 +522,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/intAsiento"/>
+                android:hint="@string/intAsiento"
+                android:inputType="number"/>
 
         </LinearLayout>
 

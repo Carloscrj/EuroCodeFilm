@@ -21,6 +21,13 @@
         <item>9</item>
 
     </string-array>
+    <string-array name="horarios">
+        <item>12:00</item>
+        <item>16:00</item>
+        <item>18:00</item>
+        <item>20:00</item>
+        <item>22:00</item>
+    </string-array>
 
 
 </resources>

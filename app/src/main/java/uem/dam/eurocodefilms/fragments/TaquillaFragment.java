@@ -20,40 +20,29 @@ import java.util.Arrays;
 
 import uem.dam.eurocodefilms.R;
 
-public class TaquillaFragment extends Fragment implements View.OnClickListener{
+public class TaquillaFragment extends Fragment implements View.OnClickListener {
 
-
+    private  static final double PRECIO_ENTRADA = 8.60;
     private String pelicula;
     private String sinopsis;
     private String sala;
 
     TextView tvTaquilla;
-
     TextView tvTituloPelicula;
     TextView tvRepreTitulo;
-
     TextView tvSinopsisPelicula;
     TextView tvRepreSinopsis;
-
     TextView tvSalaPelicula;
     TextView tvRepreSala;
-
     TextView tvNumEntradas;
-
     TextView tvPrecio;
-
     Spinner spnEntradas;
-
     TextView tvReprePrecio;
-
+    TextView tvHorario;
+    Spinner spnHorario;
     TextView tvAgradecimiento;
-
-    TextView tvButacas;
-
     Button btnEntradas;
-
     Button btnEligeAsientos;
-
     ImageView ivMapaCine;
     ImageView ivTaquilla;
 
@@ -100,11 +89,12 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener{
         tvTituloPelicula = vista.findViewById(R.id.tvTituloPelicula);
         tvSinopsisPelicula = vista.findViewById(R.id.tvSinopsisPelicula);
         tvSalaPelicula = vista.findViewById(R.id.tvSalaPelicula);
-        tvButacas = vista.findViewById(R.id.tvButacas);
         tvNumEntradas = vista.findViewById(R.id.tvNumEntradas);
         tvPrecio = vista.findViewById(R.id.tvPrecio);
         spnEntradas = vista.findViewById(R.id.spnEntradas);
         tvReprePrecio = vista.findViewById(R.id.tvReprePrecio);
+        tvHorario = vista.findViewById(R.id.tvHorario);
+        spnHorario = vista.findViewById(R.id.spnHorario);
         tvRepreTitulo = vista.findViewById(R.id.tvRepreTitulo);
         tvRepreSinopsis = vista.findViewById(R.id.tvRepreSinopsis);
         tvRepreSala = vista.findViewById(R.id.tvRepreSala);
@@ -146,7 +136,8 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int numEntradas = Integer.parseInt(spnEntradas.getSelectedItem().toString());
-                tvReprePrecio.setText(String.valueOf(numEntradas * 8.60));
+                double precio = Double.parseDouble(String.valueOf(Math.round(numEntradas * PRECIO_ENTRADA * 100.0) / 100.0));
+                tvReprePrecio.setText(precio + " €");
             }
 
             @Override
@@ -169,8 +160,8 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener{
 
     private void comprarEntradas() {
         Toast.makeText(getContext(), R.string.compra_hecha, Toast.LENGTH_SHORT).show();
-        View[] views = {tvTaquilla, tvTituloPelicula, tvSinopsisPelicula, tvSalaPelicula, tvButacas,
-                tvNumEntradas, tvPrecio, spnEntradas, tvReprePrecio, tvRepreTitulo,
+        View[] views = {tvTaquilla, tvTituloPelicula, tvSinopsisPelicula, tvSalaPelicula,
+                tvNumEntradas, tvPrecio, spnEntradas, tvHorario, spnHorario, tvReprePrecio, tvRepreTitulo,
                 tvRepreSinopsis, tvRepreSala, btnEntradas, llAsiento1, llAsiento2,
                 llAsiento3, llAsiento4, llAsiento5, llAsiento6, llAsiento7, llAsiento8,
                 llAsiento9, btnEligeAsientos, ivMapaCine};

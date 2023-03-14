@@ -39,4 +39,5 @@
     <string name="intAsiento">Asiento</string>
     <string name="btn_elige_asientos">ELIGE ASIENTO</string>
     <string name="compra_hecha">"Entradas compradas"</string>
+    <string name="tv_horario">Hora de la sesión:</string>
 </resources>
