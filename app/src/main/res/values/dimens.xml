@@ -9,4 +9,5 @@
     <dimen name="margen_btnEntradas">120dp</dimen>
     <dimen name="tv_gracias">30dp</dimen>
     <dimen name="margen_btnAsientos">80dp</dimen>
+    <dimen name="sala_cartelera">20sp</dimen>
 </resources>

@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tvcartelera"
+            android:textSize="@dimen/sala_cartelera"
             android:layout_weight="2"/>
 
         <Spinner
@@ -46,6 +47,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen_app"
             android:orientation="horizontal">
 
             <TextView
