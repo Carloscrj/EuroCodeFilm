@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +44,6 @@ import uem.dam.eurocodefilms.data.Perfil;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText etEmail;
-    TextView tvUsuario;
     EditText etPwd;
     Button btnAcceder;
     Button btnRegistrar;
@@ -57,6 +60,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String REGEX_EMAIL = "^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+)" +
             "*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
 
+    boolean usuarioYaExiste = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +69,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         etEmail = findViewById(R.id.etEmail);
-        tvUsuario = findViewById(R.id.tvUsuario);
         etPwd = findViewById(R.id.etPassword);
         btnAcceder = findViewById(R.id.btnAcceder);
         btnRegistrar = findViewById(R.id.btnRegistrar);
@@ -85,17 +89,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         user = fba.getCurrentUser();
-        if (user == null) {
-            btnRegistrar.setEnabled(true);
-            btnAcceder.setEnabled(false);
-            tvValidPwd.setVisibility(View.VISIBLE);
-        } else {
-            btnAcceder.setEnabled(true);
-            btnRegistrar.setEnabled(false);
-            tvValidPwd.setVisibility(View.INVISIBLE);
-            etEmail.setText(user.getEmail());
-            dbRef = FirebaseDatabase.getInstance().getReference("PERFILES");
-        }
+
+        dbRef = FirebaseDatabase.getInstance().getReference("PERFILES");
     }
 
     @Override
@@ -121,10 +116,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Perfil p = ds.getValue(Perfil.class);
                     if (user != null) {
                         if (p.getEmail().equals(user.getEmail())) {
-                            tvUsuario.setText("Nombre de usuario: " + p.getNombre());
+
                         }
                     } else {
-                        tvUsuario.setText("Nombre de usuario: ");
+
                     }
                 }
             }
@@ -175,6 +170,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = etEmail.getText().toString().trim();
         String pwd = etPwd.getText().toString().trim();
 
+        //Comprobamos si ese email está registrado en la base de datos
         if (email.isEmpty() || pwd.isEmpty()) {
             Toast.makeText(this, R.string.no_datos, Toast.LENGTH_LONG).show();
         } else {
@@ -187,11 +183,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         startActivity(i);
                         finish();
                     } else {
-                        Toast.makeText(LoginActivity.this, R.string.pwd_no_ok, Toast.LENGTH_SHORT).show();
+                        if (task.getException() instanceof FirebaseAuthInvalidUserException) {
+                            Toast.makeText(LoginActivity.this, R.string.no_registrado, Toast.LENGTH_SHORT).show();
+                            //Se le pregunta si quiere registrarse
+                            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                            builder.setTitle(R.string.registro);
+                            builder.setMessage(R.string.registro_mensaje);
+                            builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    registrar();
+                                }
+                            });
+                            builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builder.show();
+                        } else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(LoginActivity.this, R.string.pwd_no_ok, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });
         }
+
     }
 
     private void registrar() {
@@ -220,7 +238,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 dbRef.child(email.replace(".", "punto")).setValue(perfil);
                                 addDatabaseListener(email.replace(".", "punto"));
                             } else {
-                                Toast.makeText(LoginActivity.this, R.string.registro_no_ok, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, R.string.usuario_ya_registrado, Toast.LENGTH_SHORT).show();
+                                usuarioYaExiste = true;
                             }
                         }
                     });
@@ -239,7 +258,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Perfil perfil = snapshot.getValue(Perfil.class);
-                    if (perfil != null) tvUsuario.setText("Nombre de usuario: " + perfil.getNombre());
+                    if (perfil == null) {
+                        Toast.makeText(LoginActivity.this, R.string.registro_no_ok, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
+                        etEmail.setText(email);
+                    }
                 }
 
                 @Override

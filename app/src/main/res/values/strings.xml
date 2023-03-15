@@ -44,4 +44,10 @@
     <string name="selecciona_horario">No se ha seleccionado horario</string>
     <string name="selecciona_entradas">No se han seleccionado entradas</string>
     <string name="cuenta_google">Acción deshabilitada con cuenta Google</string>
+    <string name="no_registrado">Usuario no registrado o contraseña incorrecta</string>
+    <string name="registro">Registro</string>
+    <string name="registro_mensaje">Registrar usuario</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="usuario_ya_registrado">Usuario ya registrado</string>
 </resources>
