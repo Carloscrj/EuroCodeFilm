@@ -65,9 +65,5 @@ public class ImagenAdapter extends RecyclerView.Adapter<ImagenAdapter.ImagenView
             super(itemView);
             ivImagen = itemView.findViewById(R.id.ivImagen);
         }
-
-        public void bindGraph(Object imagen) {
-            this.imageView = imagen;
-        }
     }
 }
