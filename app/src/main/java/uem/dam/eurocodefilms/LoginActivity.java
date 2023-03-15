@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String REGEX_EMAIL = "^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+)" +
             "*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
 
-    boolean usuarioYaExiste = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +88,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         user = fba.getCurrentUser();
-
-        dbRef = FirebaseDatabase.getInstance().getReference("PERFILES");
+        if (user != null) {
+            etEmail.setText(user.getEmail());
+            tvValidPwd.setVisibility(View.GONE);
+        } else {
+            tvValidPwd.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -153,7 +156,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnAcceder) acceder();
@@ -184,8 +186,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         finish();
                     } else {
                         if (task.getException() instanceof FirebaseAuthInvalidUserException) {
-                            Toast.makeText(LoginActivity.this, R.string.no_registrado, Toast.LENGTH_SHORT).show();
-                            //Se le pregunta si quiere registrarse
                             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                             builder.setTitle(R.string.registro);
                             builder.setMessage(R.string.registro_mensaje);
@@ -229,17 +229,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
-                                btnRegistrar.setEnabled(false);
-                                btnAcceder.setEnabled(true);
-                                tvValidPwd.setVisibility(View.INVISIBLE);
-                                etEmail.setText(email);
-                                Perfil perfil = new Perfil(nombre, email);
-                                dbRef.child(email.replace(".", "punto")).setValue(perfil);
-                                addDatabaseListener(email.replace(".", "punto"));
+                                usuarioRegistrado(email, nombre);
                             } else {
                                 Toast.makeText(LoginActivity.this, R.string.usuario_ya_registrado, Toast.LENGTH_SHORT).show();
-                                usuarioYaExiste = true;
                             }
                         }
                     });
@@ -250,6 +242,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(this, R.string.email_no_valido, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private void usuarioRegistrado(String email, String nombre) {
+        Toast.makeText(LoginActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
+        btnRegistrar.setEnabled(false);
+        btnAcceder.setEnabled(true);
+        tvValidPwd.setVisibility(View.INVISIBLE);
+        etEmail.setText(email);
+        Perfil perfil = new Perfil(nombre, email);
+        dbRef.child(email.replace(".", "punto")).setValue(perfil);
+        addDatabaseListener(email.replace(".", "punto"));
     }
 
     private void addDatabaseListener(String email) {
