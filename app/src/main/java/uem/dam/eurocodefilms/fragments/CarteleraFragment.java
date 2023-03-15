@@ -49,8 +49,7 @@ public class CarteleraFragment extends Fragment implements View.OnClickListener{
 
     private ArrayList<String> imageList;
 
-    public CarteleraFragment() {
-    }
+    public CarteleraFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

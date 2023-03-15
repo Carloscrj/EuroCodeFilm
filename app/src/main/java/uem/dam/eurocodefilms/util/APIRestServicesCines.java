@@ -14,5 +14,4 @@ public interface APIRestServicesCines {
     @GET("{key}")
     Call<CineRes> obtenerCines(
             @Path("key") String key);
-
 }

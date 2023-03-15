@@ -12,12 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Arrays;
 
 import uem.dam.eurocodefilms.R;
 
@@ -57,9 +54,7 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener {
     LinearLayout llAsiento8;
     LinearLayout llAsiento9;
 
-    public TaquillaFragment() {
-        // Required empty public constructor
-    }
+    public TaquillaFragment() {}
 
     public static TaquillaFragment newInstance(String pelicula, String sinopsis, String sala) {
         TaquillaFragment fragment = new TaquillaFragment();
@@ -139,7 +134,6 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener {
 
             }
         });
-
         return vista;
     }
 

@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FragmentManager fm;
     FragmentTransaction ft;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,5 +69,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ft.addToBackStack(null);
         ft.commit();
     }
-
 }

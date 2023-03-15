@@ -60,12 +60,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String REGEX_EMAIL = "^[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&amp;'*+/=?`{|}~^-]+)" +
             "*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         etEmail = findViewById(R.id.etEmail);
         etPwd = findViewById(R.id.etPassword);
@@ -108,7 +106,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             dbRef.removeEventListener(vel);
         }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
