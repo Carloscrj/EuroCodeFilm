@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import uem.dam.eurocodefilms.R;
-import uem.dam.eurocodefilms.data.Cine;
 
 public class ImagenAdapter extends RecyclerView.Adapter<ImagenAdapter.ImagenViewHolder> implements View.OnClickListener{
 

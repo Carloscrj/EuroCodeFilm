@@ -147,7 +147,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = etEmail.getText().toString().trim();
         String pwd = etPwd.getText().toString().trim();
 
-        //Comprobamos si ese email está registrado en la base de datos
         if (email.isEmpty() || pwd.isEmpty()) {
             Toast.makeText(this, R.string.no_datos, Toast.LENGTH_LONG).show();
         } else {
