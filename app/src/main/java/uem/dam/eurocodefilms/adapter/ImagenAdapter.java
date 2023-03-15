@@ -42,7 +42,6 @@ public class ImagenAdapter extends RecyclerView.Adapter<ImagenAdapter.ImagenView
     @Override
     public ImagenViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.imagen_item, parent, false);
-        //el propio adaptador es el escuchador de cada una de sus vistas
         v.setOnClickListener(this);
         return new ImagenViewHolder(v);
     }
@@ -51,7 +50,6 @@ public class ImagenAdapter extends RecyclerView.Adapter<ImagenAdapter.ImagenView
     public void onBindViewHolder(@NonNull ImagenAdapter.ImagenViewHolder holder, int position) {
         holder.imageView = holder.ivImagen;
         Glide.with(context).load(datos.get(position)).into(holder.ivImagen);
-        //Glide.with(context).load(datos.get(position)).into((ImageView) holder.imageView);//holder.bindGraph(datos.get(position));
     }
 
     @Override
