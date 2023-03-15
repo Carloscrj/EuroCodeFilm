@@ -37,6 +37,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
     Button btnBorrarCuenta;
     EditText etNuevaPwd;
     Button btnCambiarPwd;
+    TextView tvValidPwd;
     private FirebaseAuth fba;
     private FirebaseUser user;
 
@@ -50,6 +51,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
 
         dbRef = FirebaseDatabase.getInstance().getReference("PERFILES");
+        user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -62,7 +64,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         etNuevaPwd = vista.findViewById(R.id.etNuevaPwd);
         btnCambiarPwd = vista.findViewById(R.id.btnCambiarPwd);
         btnCambiarPwd.setOnClickListener(this);
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        tvValidPwd = vista.findViewById(R.id.tvValidPwdPer);
 
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -109,6 +111,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), R.string.cambiar_pwd_ok, Toast.LENGTH_SHORT).show();
+                            tvValidPwd.setText("");
                         } else {
                             Toast.makeText(getActivity(), R.string.cambiar_pwd_no_ok, Toast.LENGTH_SHORT).show();
                         }

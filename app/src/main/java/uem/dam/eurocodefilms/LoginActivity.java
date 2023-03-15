@@ -239,7 +239,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (perfil == null) {
                         Toast.makeText(LoginActivity.this, R.string.registro_no_ok, Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(LoginActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
                         String emailModificado = perfil.getEmail().replace("punto", ".");
                         etEmail.setText(emailModificado);
                     }

@@ -46,7 +46,7 @@
     <string name="cuenta_google">Acción deshabilitada con cuenta Google</string>
     <string name="no_registrado">Usuario no registrado o contraseña incorrecta</string>
     <string name="registro">Registro</string>
-    <string name="registro_mensaje">¿Desea registrar al usuario?</string>
+    <string name="registro_mensaje">Usuario no registrado, ¿Desea registrar a este usuario?</string>
     <string name="si">Sí</string>
     <string name="no">No</string>
     <string name="usuario_ya_registrado">Usuario ya registrado</string>
