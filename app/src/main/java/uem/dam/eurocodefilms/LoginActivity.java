@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onResume() {
         super.onResume();
-        addValueEventListener();
     }
 
     @Override
@@ -110,30 +109,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void addValueEventListener() {
-        vel = new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Perfil p = ds.getValue(Perfil.class);
-                    if (user != null) {
-                        if (p.getEmail().equals(user.getEmail())) {
-
-                        }
-                    } else {
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("LECTURA FIREBASE", "Lectura cancelada: ", databaseError.toException());
-            }
-        };
-        dbRef.addValueEventListener(vel);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -265,7 +240,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Toast.makeText(LoginActivity.this, R.string.registro_no_ok, Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(LoginActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
-                        etEmail.setText(email);
+                        String emailModificado = perfil.getEmail().replace("punto", ".");
+                        etEmail.setText(emailModificado);
                     }
                 }
 
