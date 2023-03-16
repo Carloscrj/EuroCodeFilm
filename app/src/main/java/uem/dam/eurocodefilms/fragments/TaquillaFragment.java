@@ -189,9 +189,12 @@ public class TaquillaFragment extends Fragment implements View.OnClickListener {
     }
 
     private void seleccionAsientos() {
-        int numEntradas = Integer.parseInt(spnEntradas.getSelectedItem().toString());
         LinearLayout[] asientos = {llAsiento1, llAsiento2, llAsiento3, llAsiento4, llAsiento5,
                 llAsiento6, llAsiento7, llAsiento8, llAsiento9};
+        for (LinearLayout asiento : asientos) {
+            asiento.setVisibility(View.GONE);
+        }
+        int numEntradas = Integer.parseInt(spnEntradas.getSelectedItem().toString());
         for (int i = 0; i < numEntradas; i++) {
             asientos[i].setVisibility(View.VISIBLE);
         }
